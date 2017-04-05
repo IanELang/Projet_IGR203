@@ -5,15 +5,19 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 
+#include "page.h"
+
 class PageWidget : public QWidget
 {
     Q_OBJECT
 
 public:
     PageWidget();
+    PageWidget(Page &page);
 
 public slots:
     void addText();
+    void addText(QString keyword, QString content);
 
 private:
 

@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     //ui->setupUi(this);
-    this->setCentralWidget(new PageWidget());
     createData();
     QFile file("file.xxx");
     file.open(QIODevice::ReadOnly);
@@ -21,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     in >> notebooks;
     int a;
     in >> a;
+    this->setCentralWidget(new PageWidget(notebooks[0].pages[1]));
     terminal();
 }
 
@@ -50,7 +50,7 @@ void MainWindow::createData()
     Page a2;
     a2.notes.push_back(Note("Most thunder strikes per year", "Brazil"));
     a2.notes.push_back(Note("Best (?) cheese", "France"));
-    a.pages.push_back(a1);
+    a.pages.push_back(a2);
     ntbks.push_back(a);
 
     Notebook b("Islands");
