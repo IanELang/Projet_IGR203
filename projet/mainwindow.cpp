@@ -4,6 +4,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "pagewidget.h"
 
 using namespace std;
 
@@ -11,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    //ui->setupUi(this);
+    this->setCentralWidget(new PageWidget());
     createData();
     QFile file("file.xxx");
     file.open(QIODevice::ReadOnly);

@@ -13,7 +13,6 @@ class Page
 public:
     Page();
 
-protected:
     friend class MainWindow;
     friend QDataStream &operator<<(QDataStream & stream, const Page &page);
     friend QDataStream &operator>>(QDataStream & stream, Page &page);

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QVector>
+#include <QWidget>
 
 #include "notebook.h"
 
@@ -21,6 +22,8 @@ public:
 private:
     Ui::MainWindow *ui;
     QVector<Notebook> notebooks;
+
+    QWidget *content;
 
     //For development
     void createData();

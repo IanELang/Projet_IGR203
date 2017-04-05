@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     note.cpp \
     page.cpp \
-    notebook.cpp
+    notebook.cpp \
+    pagewidget.cpp
 
 HEADERS  += mainwindow.h \
     note.h \
     page.h \
-    notebook.h
+    notebook.h \
+    pagewidget.h
 
 FORMS    += mainwindow.ui
 

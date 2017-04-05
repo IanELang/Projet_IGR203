@@ -11,7 +11,6 @@ public:
     Notebook();
     Notebook(QString _name) : name(_name) {}
 
-protected:
     friend class MainWindow;
     friend QDataStream &operator<<(QDataStream & stream, const Notebook &notebook);
     friend QDataStream &operator>>(QDataStream & stream, Notebook &notebook);
