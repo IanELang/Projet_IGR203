@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
+
+#include "notebook.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +20,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QVector<Notebook> notebooks;
+
+    //For development
+    void createData();
+    void terminal();
 };
 
 #endif // MAINWINDOW_H
