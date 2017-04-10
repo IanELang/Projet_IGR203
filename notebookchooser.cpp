@@ -1,9 +1,11 @@
 #include "notebookchooser.h"
 
-NotebookChooser::NotebookChooser(QWidget *parent) :
+NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
     QWidget(parent)
 {
     //this->setStyleSheet("background-color:lightblue;");
+
+    this->notebooks = notebooks;
 
     QSpacerItem* hspacer = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed );
     QSpacerItem* vspacer = new QSpacerItem( 0, 0, QSizePolicy::Fixed, QSizePolicy::Expanding );

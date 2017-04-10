@@ -24,7 +24,7 @@ class NotebookChooser : public QWidget
 Q_OBJECT
 
 public:
-    explicit NotebookChooser(QWidget *parent = 0);
+    explicit NotebookChooser(QVector<Notebook> notebooks, QWidget *parent = 0);
     ~NotebookChooser();
 
 private slots:
