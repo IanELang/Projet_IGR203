@@ -243,6 +243,15 @@ void NotebookChooser::addNotebook()
 
 }
 
+void NotebookChooser::resizeEvent(QResizeEvent *event){
+
+    QSize actualSize = event->size();
+
+    ncols = actualSize.width()/200;
+
+    addNotebooksToGrid();
+}
+
 NotebookChooser::~NotebookChooser()
 {
 }

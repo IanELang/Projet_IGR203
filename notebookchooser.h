@@ -15,6 +15,7 @@
 #include <QMessageBox>
 #include <QSpacerItem>
 #include <QScrollArea>
+#include <QResizeEvent>
 #include <QDir>
 #include "notebook.h"
 
@@ -46,6 +47,7 @@ private:
 
     void remove(QGridLayout *layout, bool deleteWidgets);
     void deleteChildWidgets(QLayoutItem *item);
+    void resizeEvent(QResizeEvent *event);
 
 };
 
