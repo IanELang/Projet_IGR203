@@ -5,6 +5,10 @@ NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
 {
     //this->setStyleSheet("background-color:lightblue;");
 
+    this->setMinimumWidth(870);
+    this->setMinimumHeight(600);
+
+
     this->notebooks = notebooks;
 
     QSpacerItem* hspacer = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed );

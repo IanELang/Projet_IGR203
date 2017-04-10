@@ -15,7 +15,7 @@
 #include <QWidget>
 
 
-Calendar::Calendar(QVector<Notebook> &notebooks, QWidget *parent) :
+Calendar::Calendar(QVector<Notebook> const &notebooks, QWidget *parent) :
     QWidget(parent)
 {
 
@@ -25,8 +25,8 @@ Calendar::Calendar(QVector<Notebook> &notebooks, QWidget *parent) :
     this->setMinimumWidth(870);
     this->setMinimumHeight(600);
 
-    this->setMaximumWidth(870);
-    this->setMaximumHeight(600);
+    this->setMaximumWidth(1200);
+    this->setMaximumHeight(800);
 
     layout = new QVBoxLayout();
     jours = new QHBoxLayout();
@@ -65,8 +65,8 @@ Calendar::Calendar(QVector<Notebook> &notebooks, QWidget *parent) :
     jours->addWidget(samedi,1);
     jours->addWidget(dimanche,1);
 
-    int minHeight = 120;
-    int minmWidth = 120;
+    int minHeight = this->size().height()/5;
+    int minmWidth = this->size().width()/7;
 
     grid->setHorizontalSpacing(4);
     grid->setVerticalSpacing(4);
@@ -136,7 +136,7 @@ Calendar::Calendar(QVector<Notebook> &notebooks, QWidget *parent) :
             std::cout << notebooks[i].pages[j].creationDate.month() << std::endl;
             if (notebooks[i].pages[j].creationDate.month() == data->month()) {
                 clickLabel *newLabel = new clickLabel(notebooks[i].name, j, i);
-                addNote(notebooks[i].pages[j].creationDate.day(), newLabel);
+                addNote(notebooks[i].pages[j].creationDate.day(), newLabel, i);
                 connect(newLabel, SIGNAL(clicked(int,int)), this->parent(), SLOT(openFromCalendar(int,int)));
             }
         }
@@ -144,11 +144,11 @@ Calendar::Calendar(QVector<Notebook> &notebooks, QWidget *parent) :
 }
 
 
-void Calendar::addNote(int day, QLabel *nota){
+void Calendar::addNote(int day, QLabel *nota, int nnb){
     if(days.size() != 0){
         for(unsigned int i = 0; i < days.size(); i++){
             if(days[i]->number == day){
-                days[i]->addNoteWidget(nota);
+                days[i]->addNoteWidget(nota, nnb);
 
             }
         }
