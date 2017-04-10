@@ -1,5 +1,5 @@
-#ifndef KEYWORDWIDGET_H
-#define KEYWORDWIDGET_H
+#ifndef SUMMARYWIDGET_H
+#define SUMMARYWIDGET_H
 
 #include <QMainWindow>
 #include <QVBoxLayout>
@@ -8,19 +8,16 @@
 #include "notebook.h"
 #include "mainwindow.h"
 
-
-class KeywordWidget : public QWidget
+class SummaryWidget : public QWidget
 {
-
     Q_OBJECT
 public:
-    KeywordWidget(Notebook ntbks, MainWindow *_controller);
+
+    SummaryWidget(Notebook ntbks, MainWindow *_controller);
 
 private:
     MainWindow *controller;
 
-
 };
 
-#endif // KEYWORDWIDGET_H
-
+#endif // SUMMARYWIDGET_H
