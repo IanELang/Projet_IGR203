@@ -96,6 +96,14 @@ void MainWindow::createData()
     ntbks.push_back(a);
 
     Notebook b("Islands");
+    Page b1("Marajo", QDate(2017, 4, 1));
+    b1.notes.push_back(Note("Brazil", "Location"));
+    b1.notes.push_back(Note("Norte", "Region"));
+    b.pages.push_back(b1);
+    Page b2("Australia", QDate(2017, 8, 3));
+    b2.notes.push_back(Note("Oceania", "Location"));
+    b2.notes.push_back(Note("Norte", "Region"));
+    b.pages.push_back(b2);
     ntbks.push_back(b);
 
     QFile file("file.xxx");
