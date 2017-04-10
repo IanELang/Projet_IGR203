@@ -40,6 +40,7 @@ public:
     void nextPage();
     void prevPage();
     void openFromCalendar(int page, int notebook);
+    void browseKeywords();
 };
 
 #endif // MAINWINDOW_H

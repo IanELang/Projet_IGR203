@@ -11,7 +11,7 @@
 #include "pagewidget.h"
 
 PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool hasPred) :
-    controller{_controller}
+    controller(_controller), date(page.creationDate)
 {
     QScrollArea* gallery = this;
     //this->addWidget(gallery);
@@ -33,11 +33,14 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
         connect(prev, SIGNAL(clicked()), controller, SLOT(prevPage()));
     }
     QPushButton* button = new QPushButton("New Note");
+    vLayout->addWidget(button);
+    connect(button, SIGNAL(clicked()), this, SLOT(addText()));
     QPushButton* next = new QPushButton("New Page");
     vLayout->addWidget(next);
     connect(next, SIGNAL(clicked()), controller, SLOT(newPage()));
-    vLayout->addWidget(button);
-    connect(button, SIGNAL(clicked()), this, SLOT(addText()));
+    QPushButton* bk = new QPushButton("Browse Keywords");
+    vLayout->addWidget(bk);
+    connect(bk, SIGNAL(clicked()), controller, SLOT(browseKeywords()));
     QWidget * gallerie = new QWidget();
     vLayout->addWidget(gallerie);
     for (int i = 0; i < page.notes.size(); i++) {
@@ -71,5 +74,6 @@ Page PageWidget::toPage(){
         ret.notes.append(newNote);
     }
     ret.summary = summary->toPlainText();
+    ret.creationDate = date;
     return ret;
 }

@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     pagewidget.cpp \
     calendar.cpp \
     clicklabel.cpp \
-    day.cpp
+    day.cpp \
+    notebookchooser.cpp \
+    keywordwidget.cpp
 
 HEADERS  += mainwindow.h \
     note.h \
@@ -29,7 +31,9 @@ HEADERS  += mainwindow.h \
     pagewidget.h \
     calendar.h \
     clicklabel.h \
-    day.h
+    day.h \
+    notebookchooser.h \
+    keywordwidget.h
 
 FORMS    += mainwindow.ui
 

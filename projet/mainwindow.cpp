@@ -6,6 +6,8 @@
 #include "ui_mainwindow.h"
 #include "pagewidget.h"
 
+#include "notebookchooser.h"
+#include "keywordwidget.h"
 #include "calendar.h"
 
 using namespace std;
@@ -24,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     in >> a;
     //this->setCentralWidget(new PageWidget(notebooks[0].pages[0], this, true, true));
     this->setCentralWidget(new Calendar(notebooks, this));
+    //this->setCentralWidget(new NotebookChooser());
     //openPage(0, 0);
     curNotebook = 0;
     curPage = 0;
@@ -68,7 +71,15 @@ void MainWindow::prevPage()
 
 void MainWindow::openFromCalendar(int page, int notebook)
 {
+    curNotebook = notebook;
+    curPage = page;
     openPage(notebook, page);
+}
+
+void MainWindow::browseKeywords()
+{
+    closePage();
+    this->setCentralWidget(new KeywordWidget(notebooks[curNotebook], curNotebook, this));
 }
 
 void MainWindow::terminal()

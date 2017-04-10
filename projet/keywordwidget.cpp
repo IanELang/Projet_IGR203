@@ -16,7 +16,7 @@
 
 
 
-KeywordWidget::KeywordWidget(Notebook notebook,  MainWindow *_controller):
+KeywordWidget::KeywordWidget(Notebook notebook, int noteNum,  MainWindow *_controller):
     controller{_controller}
 {
 
@@ -31,10 +31,10 @@ KeywordWidget::KeywordWidget(Notebook notebook,  MainWindow *_controller):
         date->setText(  "<html><b>" + notebook.pages[i].creationDate.toString() + "</b></html>");
         layout->addWidget(date , 3, i, Qt::AlignCenter);
         for(int j=0; j<notebook.pages[i].notes.size(); j++){
-           clickLabel* buttonKeyword = new clickLabel(i, 1);
+           clickLabel* buttonKeyword = new clickLabel(i, noteNum);
            buttonKeyword->setText(notebook.pages[i].notes[j].keyword);
            layout->addWidget(buttonKeyword,j+4,i, Qt::AlignCenter);
-           connect(buttonKeyword, SIGNAL(clicked(int, int)), controller, SLOT(text(int, int)));
+           connect(buttonKeyword, SIGNAL(clicked(int, int)), controller, SLOT(openFromCalendar(int,int)));
         }
 }
 

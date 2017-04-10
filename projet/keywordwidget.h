@@ -14,7 +14,7 @@ class KeywordWidget : public QWidget
 
     Q_OBJECT
 public:
-    KeywordWidget(Notebook ntbks, MainWindow *_controller);
+    KeywordWidget(Notebook ntbks, int noteNum, MainWindow *_controller);
 
 private:
     MainWindow *controller;

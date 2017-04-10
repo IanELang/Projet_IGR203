@@ -7,6 +7,7 @@
 #include <QTextEdit>
 #include <QVector>
 #include <QScrollArea>
+#include <QDate>
 
 #include "page.h"
 #include "mainwindow.h"
@@ -29,6 +30,7 @@ private:
     QWidget * container = new QWidget();
     QVBoxLayout* vLayout = new QVBoxLayout(this);
     QTextEdit* summary;
+    QDate date;
     
     QVector<QTextEdit *> keywords;
     QVector<QTextEdit *> notes;
