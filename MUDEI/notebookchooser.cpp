@@ -25,10 +25,12 @@ NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
     global->addLayout(sideBar);
     global->addLayout(mainBar);
 
-    QPushButton *calendarButton = new QPushButton(this);
-    calendarButton->setText(tr("see calendar"));
-    connect(calendarButton, SIGNAL(clicked( )), this->parent(), SLOT(openCalendar( )));
-    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
+
+// nao sei se a tab vai funcionar bem
+//    QPushButton *calendarButton = new QPushButton(this);
+//    calendarButton->setText(tr("see calendar"));
+//    connect(calendarButton, SIGNAL(clicked( )), this->parent(), SLOT(openCalendar( )));
+//    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
 
     notebookGrid->setHorizontalSpacing(20);
     notebookGrid->setVerticalSpacing(20);

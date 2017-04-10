@@ -13,6 +13,7 @@
 #include <iostream>
 #include <map>
 #include <QWidget>
+#include <QToolTip>
 
 
 Calendar::Calendar(QVector<Notebook> const &notebooks, QWidget *parent) :
@@ -34,10 +35,11 @@ Calendar::Calendar(QVector<Notebook> const &notebooks, QWidget *parent) :
     grid = new QGridLayout();
     this->setLayout(layout);
 
-    QPushButton * notebooks_button = new QPushButton ("see notebooks");
+    // nao sei se a tab vai funcionar bem
+    //    QPushButton * notebooks_button = new QPushButton ("see notebooks");
+    //    connect(notebooks_button, SIGNAL(clicked()), this->parent(), SLOT(openNotebookChooser()));
+    //layout->addWidget(notebooks_button);
 
-    connect(notebooks_button, SIGNAL(clicked()), this->parent(), SLOT(openNotebookChooser()));
-    layout->addWidget(notebooks_button);
     layout->addLayout(jours);
     layout->addLayout(grid);
 
@@ -136,6 +138,28 @@ Calendar::Calendar(QVector<Notebook> const &notebooks, QWidget *parent) :
             std::cout << notebooks[i].pages[j].creationDate.month() << std::endl;
             if (notebooks[i].pages[j].creationDate.month() == data->month()) {
                 clickLabel *newLabel = new clickLabel(notebooks[i].name, j, i);
+
+                //                  newLabel->setToolTip("Title: " + notebooks[i].pages[j].title +
+                //                                       "\nSummary: " + notebooks[i].pages[j].summary);
+
+                QString keys="";
+
+                for (int k = 0; k < notebooks[i].pages[j].notes.size(); k++ )
+                    keys = keys + notebooks[i].pages[j].notes[k].keyword + ", ";
+
+                newLabel->setToolTip("Summary: " + notebooks[i].pages[j].summary + "\nKeywords: " + keys);
+
+                QToolTip * tt;
+                QFont sansFont("Helvetica [Cronyx]", 16);
+                tt->setFont(sansFont);
+
+                QPalette palette = QToolTip::palette();
+                palette.setColor(QPalette::ToolTipBase,QColor("#F6F6F6")); // light grey
+                palette.setColor(QPalette::ToolTipText,QColor("#706F6F")); //dark grey for text
+                QToolTip::setPalette(palette);
+
+                QToolTip::showText(newLabel->mapFromGlobal(QPoint()), newLabel->toolTip());
+
                 addNote(notebooks[i].pages[j].creationDate.day(), newLabel, i);
                 connect(newLabel, SIGNAL(clicked(int,int)), this->parent(), SLOT(openFromCalendar(int,int)));
             }
