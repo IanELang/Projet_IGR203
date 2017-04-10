@@ -20,13 +20,47 @@ MainWindow::MainWindow(QWidget *parent) :
     in >> notebooks;
     int a;
     in >> a;
-    this->setCentralWidget(new PageWidget(notebooks[0].pages[1]));
+    this->setCentralWidget(new PageWidget(notebooks[0].pages[0], this, true, true));
+    openPage(0, 0);
+    curNotebook = 0;
+    curPage = 0;
     terminal();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::openPage(int ntbk, int pg)
+{
+    content = new PageWidget(notebooks[ntbk].pages[pg], this, pg < notebooks[ntbk].pages.size()-1, pg != 0);
+    this->setCentralWidget(content);
+}
+
+void MainWindow::closePage()
+{
+    notebooks[curNotebook].pages[curPage] = ((PageWidget *)content)->toPage();
+}
+
+void MainWindow::newPage()
+{
+    notebooks[curNotebook].pages.append(Page());
+    nextPage();
+}
+
+void MainWindow::nextPage()
+{
+    closePage();
+    curPage++;
+    openPage(curNotebook,curPage);
+}
+
+void MainWindow::prevPage()
+{
+    closePage();
+    curPage--;
+    openPage(curNotebook,curPage);
 }
 
 void MainWindow::terminal()
@@ -41,13 +75,13 @@ void MainWindow::createData()
 {
     QVector<Notebook> ntbks;
     Notebook a("Countries");
-    Page a1;
-    a1.notes.push_back(Note("Largest country in South America", "Brazil"));
-    a1.notes.push_back(Note("Largest country in North America", "USA"));
-    a1.notes.push_back(Note("Largest country in Asia", "Russia"));
+    Page a1("Asia");
+    a1.notes.push_back(Note("Afghanistan, officially the Islamic Republic of Afghanistan, is a landlocked country located within South Asia and Central Asia.[9][10] It has a population of approximately 32 million, making it the 42nd most populous country in the world.", "Afghanistan"));
+    a1.notes.push_back(Note("Jordan, is an Arab kingdom in Western Asia, on the East Bank of the Jordan River. Jordan is bordered by Saudi Arabia to the east and south; Iraq to the north-east; Syria to the north; Israel, Palestine and the Dead Sea to the west; and the Red Sea in its extreme south-west.", "Jordan"));
+    a1.notes.push_back(Note("Lebanon, is a sovereign state in Western Asia. It is bordered by Syria to the north and east and Israel to the south, while Cyprus is west across the Mediterranean Sea. ", "Lebanon"));
     a1.notes.push_back(Note("Largest country in Europe", "Also russia"));
     a.pages.push_back(a1);
-    Page a2;
+    Page a2("America");
     a2.notes.push_back(Note("Most thunder strikes per year", "Brazil"));
     a2.notes.push_back(Note("Best (?) cheese", "France"));
     a.pages.push_back(a2);

@@ -4,16 +4,21 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QTextEdit>
+#include <QVector>
+#include <QScrollArea>
 
 #include "page.h"
+#include "mainwindow.h"
 
-class PageWidget : public QWidget
+class PageWidget : public QScrollArea
 {
     Q_OBJECT
 
 public:
     PageWidget();
-    PageWidget(Page &page);
+    PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool hasPred);
+    Page toPage();
 
 public slots:
     void addText();
@@ -21,9 +26,15 @@ public slots:
 
 private:
 
-    QHBoxLayout* hLayout = new QHBoxLayout();
     QWidget * container = new QWidget();
     QVBoxLayout* vLayout = new QVBoxLayout(this);
+    QTextEdit* summary;
+    
+    QVector<QTextEdit *> keywords;
+    QVector<QTextEdit *> notes;
+
+    MainWindow *controller;
+    
 };
 
 #endif //MAINWINDOW_H

@@ -19,15 +19,26 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private:
     Ui::MainWindow *ui;
     QVector<Notebook> notebooks;
 
+    int curNotebook;
+    int curPage;
+
     QWidget *content;
+
+    void openPage(int ntbk, int pg);
+    void closePage();
+
 
     //For development
     void createData();
     void terminal();
+
+    public slots:
+    void newPage();
+    void nextPage();
+    void prevPage();
 };
 
 #endif // MAINWINDOW_H

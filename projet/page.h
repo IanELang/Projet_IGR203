@@ -11,7 +11,8 @@
 class Page
 {
 public:
-    Page();
+    Page() {}
+    Page(QString _summary) : summary(_summary) {}
 
     friend class MainWindow;
     friend QDataStream &operator<<(QDataStream & stream, const Page &page);
@@ -20,6 +21,7 @@ public:
     QVector<Note> notes;
     QDate creationDate;
     QString summary;
+    QString title;
 };
 
 QDataStream &operator<<(QDataStream & stream, const Page &page);
