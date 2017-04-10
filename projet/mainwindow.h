@@ -39,6 +39,7 @@ public:
     void newPage();
     void nextPage();
     void prevPage();
+    void openFromCalendar(int page, int notebook);
 };
 
 #endif // MAINWINDOW_H

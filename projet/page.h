@@ -12,7 +12,7 @@ class Page
 {
 public:
     Page() {}
-    Page(QString _summary) : summary(_summary) {}
+    Page(QString _summary, QDate _date) : summary(_summary), creationDate(_date) {}
 
     friend class MainWindow;
     friend QDataStream &operator<<(QDataStream & stream, const Page &page);

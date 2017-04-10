@@ -17,13 +17,19 @@ SOURCES += main.cpp\
     note.cpp \
     page.cpp \
     notebook.cpp \
-    pagewidget.cpp
+    pagewidget.cpp \
+    calendar.cpp \
+    clicklabel.cpp \
+    day.cpp
 
 HEADERS  += mainwindow.h \
     note.h \
     page.h \
     notebook.h \
-    pagewidget.h
+    pagewidget.h \
+    calendar.h \
+    clicklabel.h \
+    day.h
 
 FORMS    += mainwindow.ui
 
