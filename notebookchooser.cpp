@@ -160,8 +160,12 @@ void NotebookChooser::importNotebooks()
     }
 
     QDataStream in(&file);
-    notebooks.clear();   // clear existing contacts
-    in >> notebooks;
+    QVector<Notebook> newNotebooks;
+    in >> newNotebooks;
+
+    QVectorIterator<Notebook> i(newNotebooks);
+    while (i.hasNext())
+        notebooks.append(i.next());
 
     addNotebooksToGrid();
 }
@@ -237,6 +241,15 @@ void NotebookChooser::addNotebook()
 
     addNotebooksToGrid();
 
+}
+
+void NotebookChooser::resizeEvent(QResizeEvent *event){
+
+    QSize actualSize = event->size();
+
+    ncols = actualSize.width()/200;
+
+    addNotebooksToGrid();
 }
 
 NotebookChooser::~NotebookChooser()
