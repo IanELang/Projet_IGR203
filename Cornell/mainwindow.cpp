@@ -24,13 +24,20 @@ MainWindow::MainWindow(QWidget *parent) :
     global->addLayout(sideBar);
     global->addLayout(mainBar);
 
-
     QPushButton *calendarButton = new QPushButton(this);
     calendarButton->setText(tr("See calendar"));
     connect(calendarButton, SIGNAL(clicked( )), this, SLOT(openCalendar( )));
     mainBar->addWidget(calendarButton, Qt::AlignVCenter);
 
-    mainBar->addLayout(notebookGrid);
+    notebookGrid->setHorizontalSpacing(20);
+    notebookGrid->setVerticalSpacing(20);
+
+    QWidget* client = new QWidget();
+    client->setLayout(notebookGrid);
+    QScrollArea* scroll = new QScrollArea();
+    scroll->setWidgetResizable(true);
+    scroll->setWidget(client);
+    mainBar->addWidget(scroll);
 
     QLabel* userLabel = new QLabel;
     QPixmap userLogo(":/Resources/user.png");
@@ -75,15 +82,16 @@ void MainWindow::addNotebooksToGrid()
 
         QLabel* noteRepr = new QLabel;
         QPixmap noteBack(":/Resources/note_alpha.png");
-        QPixmap noteBackScaled = noteBack.scaled(QSize(100,200),  Qt::KeepAspectRatio);
+        QPixmap noteBackScaled = noteBack.scaled(QSize(500,500),  Qt::KeepAspectRatio);
         noteRepr->setPixmap(noteBackScaled);
         noteRepr->setScaledContents( true );
         noteRepr->setAlignment(Qt::AlignCenter);
-        QSizePolicy sizePol = QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePol.setWidthForHeight(false);
-        sizePol.setHeightForWidth(true);
+        QSizePolicy sizePol = QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        noteRepr->setMinimumWidth(100);
+        noteRepr->setMinimumHeight(120);
+        noteRepr->setMaximumWidth(200);
+        noteRepr->setMaximumHeight(240);
         noteRepr->setSizePolicy(sizePol);
-
         QVBoxLayout* notebookLayout = new QVBoxLayout();
 
         QLabel* title = new QLabel(notebooks.at(i).name);
@@ -106,6 +114,7 @@ void MainWindow::addNotebooksToGrid()
     }
 
     QPushButton* addNotebook = new QPushButton("Add notebook");
+    addNotebook->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
     notebookGrid->addWidget(addNotebook,notebooks.size()/ncols,notebooks.size()%ncols);
     connect(addNotebook, SIGNAL(clicked( )), this, SLOT(addNotebook( )));
 }
@@ -136,6 +145,10 @@ void MainWindow::deleteChildWidgets(QLayoutItem *item) {
 void MainWindow::importNotebooks()
 {
     QString notesPath = QDir::currentPath() + QString("/notebooks/");
+
+    if (!QDir(notesPath).exists()) {
+        QDir(notesPath).mkpath(".");
+    }
 
     QString fileName = QFileDialog::getOpenFileName(this,
         tr("Import file:"), notesPath, tr("Notebook Files (*.ntb)"));
@@ -168,6 +181,10 @@ void MainWindow::exportNotebooks()
     }
 
     QString notesPath = QDir::currentPath() + QString("/notebooks/");
+
+    if (!QDir(notesPath).exists()) {
+        QDir(notesPath).mkpath(".");
+    }
 
     QString fileName = QFileDialog::getSaveFileName(this,
         tr("Export to:"), notesPath, tr("Notebook Files (*.ntb)"));

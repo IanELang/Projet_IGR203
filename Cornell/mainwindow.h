@@ -14,6 +14,7 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QSpacerItem>
+#include <QScrollArea>
 #include <QDir>
 #include "notebook.h"
 
