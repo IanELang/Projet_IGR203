@@ -76,8 +76,11 @@ void NotebookChooser::addNotebooksToGrid()
     newNoteMapper = new QSignalMapper(this);
     connect(newNoteMapper, SIGNAL(mapped(int)), this, SLOT(newNote(int)));
 
-    reviewNoteMapper = new QSignalMapper(this);
-    connect(reviewNoteMapper, SIGNAL(mapped(int)), this, SLOT(reviewNotes(int)));
+    reviewNotesMapper = new QSignalMapper(this);
+    connect(reviewNotesMapper, SIGNAL(mapped(int)), this, SLOT(reviewNotes(int)));
+
+    reviewSummariesMapper = new QSignalMapper(this);
+    connect(reviewSummariesMapper, SIGNAL(mapped(int)), this, SLOT(reviewSummaries(int)));
 
     for(int i = 0; i < notebooks.size(); i++)
     {
@@ -104,13 +107,18 @@ void NotebookChooser::addNotebooksToGrid()
         connect(newButton, SIGNAL(clicked()), newNoteMapper, SLOT(map()));
         newNoteMapper->setMapping(newButton, i);
 
-        QPushButton* reviewButton = new QPushButton("review");
-        connect(reviewButton, SIGNAL(clicked()), reviewNoteMapper, SLOT(map()));
-        reviewNoteMapper->setMapping(reviewButton, i);
+        QPushButton* reviewNotesButton = new QPushButton("review notes");
+        connect(reviewNotesButton, SIGNAL(clicked()), reviewNotesMapper, SLOT(map()));
+        reviewNotesMapper->setMapping(reviewNotesButton, i);
+
+        QPushButton* reviewSummariesButton = new QPushButton("review summaries");
+        connect(reviewSummariesButton, SIGNAL(clicked()), reviewSummariesMapper, SLOT(map()));
+        reviewSummariesMapper->setMapping(reviewSummariesButton, i);
 
         notebookLayout->addWidget(title);
         notebookLayout->addWidget(newButton);
-        notebookLayout->addWidget(reviewButton);
+        notebookLayout->addWidget(reviewNotesButton);
+        notebookLayout->addWidget(reviewSummariesButton);
 
         noteRepr->setLayout(notebookLayout);
         notebookGrid->addWidget(noteRepr,i/ncols,i%ncols);
@@ -221,7 +229,13 @@ void NotebookChooser::newNote(int ntbNum)
 void NotebookChooser::reviewNotes(int ntbNum)
 {
     // abre interface de revisar os cadernos
-    std::cout << "review: " << notebooks.at(ntbNum).name.toStdString() << std::endl;
+    std::cout << "review notes: " << notebooks.at(ntbNum).name.toStdString() << std::endl;
+}
+
+void NotebookChooser::reviewSummaries(int ntbNum)
+{
+    // abre interface de revisar os cadernos
+    std::cout << "review summaries: " << notebooks.at(ntbNum).name.toStdString() << std::endl;
 }
 
 void NotebookChooser::addNotebook()
