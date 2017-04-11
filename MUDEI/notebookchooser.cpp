@@ -26,11 +26,11 @@ NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
     global->addLayout(mainBar);
 
 
-// nao sei se a tab vai funcionar bem
-//    QPushButton *calendarButton = new QPushButton(this);
-//    calendarButton->setText(tr("see calendar"));
-//    connect(calendarButton, SIGNAL(clicked( )), this->parent(), SLOT(openCalendar( )));
-//    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
+    // nao sei se a tab vai funcionar bem
+    //    QPushButton *calendarButton = new QPushButton(this);
+    //    calendarButton->setText(tr("see calendar"));
+    //    connect(calendarButton, SIGNAL(clicked( )), this->parent(), SLOT(openCalendar( )));
+    //    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
 
     notebookGrid->setHorizontalSpacing(20);
     notebookGrid->setVerticalSpacing(20);
@@ -154,24 +154,24 @@ void NotebookChooser::importNotebooks()
     }
 
     QString fileName = QFileDialog::getOpenFileName(this,
-        tr("Import file:"), notesPath, tr("Notebook Files (*.ntb)"));
+                                                    tr("Import file:"), notesPath, tr("Notebook Files (*.ntb)"));
 
     // http://doc.qt.io/qt-5/qtwidgets-tutorials-addressbook-part6-example.html
     QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly)) {
         QMessageBox::information(this, tr("Unable to open file"),
-            file.errorString());
+                                 file.errorString());
         return;
     }
 
     QDataStream in(&file);
-      QVector<Notebook> newNotebooks;
-      in >> newNotebooks;
+    QVector<Notebook> newNotebooks;
+    in >> newNotebooks;
 
-      QVectorIterator<Notebook> i(newNotebooks);
-      while (i.hasNext())
-          notebooks.append(i.next());
+    QVectorIterator<Notebook> i(newNotebooks);
+    while (i.hasNext())
+        notebooks.append(i.next());
 
     addNotebooksToGrid();
 }
@@ -194,7 +194,7 @@ void NotebookChooser::exportNotebooks()
     }
 
     QString fileName = QFileDialog::getSaveFileName(this,
-        tr("Export to:"), notesPath, tr("Notebook Files (*.ntb)"));
+                                                    tr("Export to:"), notesPath, tr("Notebook Files (*.ntb)"));
 
     if(!fileName.endsWith(".ntb"))
     {
@@ -228,8 +228,8 @@ void NotebookChooser::addNotebook()
 {
     bool ok;
     QString name = QInputDialog::getText(this, tr("QInputDialog::getText()"),
-                                           tr("New notebook name:"), QLineEdit::Normal,
-                                           QDir::home().dirName(), &ok);
+                                         tr("New notebook name:"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &ok);
 
     if (ok && !name.isEmpty())
     {
