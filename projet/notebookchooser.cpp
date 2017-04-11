@@ -1,9 +1,15 @@
 #include "notebookchooser.h"
 
-NotebookChooser::NotebookChooser(QWidget *parent) :
+NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
     QWidget(parent)
 {
     //this->setStyleSheet("background-color:lightblue;");
+
+    this->setMinimumWidth(870);
+    this->setMinimumHeight(600);
+
+
+    this->notebooks = notebooks;
 
     QSpacerItem* hspacer = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed );
     QSpacerItem* vspacer = new QSpacerItem( 0, 0, QSizePolicy::Fixed, QSizePolicy::Expanding );
@@ -19,10 +25,12 @@ NotebookChooser::NotebookChooser(QWidget *parent) :
     global->addLayout(sideBar);
     global->addLayout(mainBar);
 
-    QPushButton *calendarButton = new QPushButton(this);
-    calendarButton->setText(tr("See calendar"));
-    connect(calendarButton, SIGNAL(clicked( )), this, SLOT(openCalendar( )));
-    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
+
+// nao sei se a tab vai funcionar bem
+//    QPushButton *calendarButton = new QPushButton(this);
+//    calendarButton->setText(tr("see calendar"));
+//    connect(calendarButton, SIGNAL(clicked( )), this->parent(), SLOT(openCalendar( )));
+//    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
 
     notebookGrid->setHorizontalSpacing(20);
     notebookGrid->setVerticalSpacing(20);
@@ -158,8 +166,12 @@ void NotebookChooser::importNotebooks()
     }
 
     QDataStream in(&file);
-    notebooks.clear();   // clear existing contacts
-    in >> notebooks;
+    QVector<Notebook> newNotebooks;
+    in >> newNotebooks;
+
+    QVectorIterator<Notebook> i(newNotebooks);
+    while (i.hasNext())
+        notebooks.append(i.next());
 
     addNotebooksToGrid();
 }
@@ -199,12 +211,6 @@ void NotebookChooser::exportNotebooks()
 
 }
 
-void NotebookChooser::openCalendar()
-{
-    // abre interface de revisar os cadernos
-    std::cout << "opening calendar..." << std::endl;
-}
-
 void NotebookChooser::newNote(int ntbNum)
 {
     // abre interface de editar nota do notebook especifico
@@ -234,6 +240,20 @@ void NotebookChooser::addNotebook()
     }
 
     addNotebooksToGrid();
+
+}
+
+void NotebookChooser::resizeEvent(QResizeEvent *event){
+
+    QSize actualSize = event->size();
+
+    int newNcols = actualSize.width()/200;
+
+    if(newNcols != ncols)
+    {
+        ncols = newNcols;
+        addNotebooksToGrid();
+    }
 
 }
 
