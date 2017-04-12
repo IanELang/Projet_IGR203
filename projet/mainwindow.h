@@ -38,6 +38,9 @@ public slots:
     void openFromCalendar(int page, int notebook);
     void browseKeywords();
     void browseKeywords(int numNotebook);
+
+    void loadTab();
+
 };
 
 #endif // MAINWINDOW_H
