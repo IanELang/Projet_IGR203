@@ -4,8 +4,8 @@
 Day::Day(QWidget *parent) :
     QWidget(parent)
 {
-    lala = new QVBoxLayout();
-    this->setLayout(lala);
+    vLayout = new QVBoxLayout();
+    this->setLayout(vLayout);
 
    // this->setGeometry(0, 0, 80, 60);
     QPalette pal = palette();

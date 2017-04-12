@@ -13,26 +13,32 @@
 #include <iostream>
 #include <map>
 #include <QWidget>
+#include <QToolTip>
 
 
-Calendar::Calendar(QVector<Notebook> &notebooks, MainWindow *mw, QWidget *widget)
+Calendar::Calendar(QVector<Notebook> const &notebooks, QWidget *parent) :
+    QWidget(parent)
 {
 
     data = new QDate();
     *data = QDate::currentDate();
 
-
     this->setMinimumWidth(870);
     this->setMinimumHeight(600);
 
-    this->setMaximumWidth(870);
-    this->setMaximumHeight(600);
+    this->setMaximumWidth(1200);
+    this->setMaximumHeight(800);
 
     layout = new QVBoxLayout();
     jours = new QHBoxLayout();
 
     grid = new QGridLayout();
     this->setLayout(layout);
+
+    // nao sei se a tab vai funcionar bem
+    //    QPushButton * notebooks_button = new QPushButton ("see notebooks");
+    //    connect(notebooks_button, SIGNAL(clicked()), this->parent(), SLOT(openNotebookChooser()));
+    //layout->addWidget(notebooks_button);
 
     layout->addLayout(jours);
     layout->addLayout(grid);
@@ -61,8 +67,8 @@ Calendar::Calendar(QVector<Notebook> &notebooks, MainWindow *mw, QWidget *widget
     jours->addWidget(samedi,1);
     jours->addWidget(dimanche,1);
 
-    int minHeight = 120;
-    int minmWidth = 120;
+    int minHeight = this->size().height()/5;
+    int minmWidth = this->size().width()/7;
 
     grid->setHorizontalSpacing(4);
     grid->setVerticalSpacing(4);
@@ -132,24 +138,45 @@ Calendar::Calendar(QVector<Notebook> &notebooks, MainWindow *mw, QWidget *widget
             std::cout << notebooks[i].pages[j].creationDate.month() << std::endl;
             if (notebooks[i].pages[j].creationDate.month() == data->month()) {
                 clickLabel *newLabel = new clickLabel(notebooks[i].name, j, i);
-                addNote(notebooks[i].pages[j].creationDate.day(), newLabel);
-                connect(newLabel, SIGNAL(clicked(int,int)), mw, SLOT(openFromCalendar(int,int)));
+
+                //                  newLabel->setToolTip("Title: " + notebooks[i].pages[j].title +
+                //                                       "\nSummary: " + notebooks[i].pages[j].summary);
+
+                QString keys="";
+
+                for (int k = 0; k < notebooks[i].pages[j].notes.size(); k++ )
+                    keys = keys + notebooks[i].pages[j].notes[k].keyword + ", ";
+
+                newLabel->setToolTip("Summary: " + notebooks[i].pages[j].summary + "\nKeywords: " + keys);
+
+                QToolTip * tt;
+                QFont sansFont("Helvetica [Cronyx]", 16);
+                tt->setFont(sansFont);
+
+                QPalette palette = QToolTip::palette();
+                palette.setColor(QPalette::ToolTipBase,QColor("#F6F6F6")); // light grey
+                palette.setColor(QPalette::ToolTipText,QColor("#706F6F")); //dark grey for text
+                QToolTip::setPalette(palette);
+
+                QToolTip::showText(newLabel->mapFromGlobal(QPoint()), newLabel->toolTip());
+
+                addNote(notebooks[i].pages[j].creationDate.day(), newLabel, i);
+                connect(newLabel, SIGNAL(clicked(int,int)), this->parent(), SLOT(openFromCalendar(int,int)));
             }
         }
     }
 }
 
 
-void Calendar::addNote(int day, QLabel *nota){
+void Calendar::addNote(int day, QLabel *nota, int nnb){
     if(days.size() != 0){
         for(unsigned int i = 0; i < days.size(); i++){
             if(days[i]->number == day){
-                days[i]->addNoteWidget(nota);
+                days[i]->addNoteWidget(nota, nnb);
 
             }
         }
     }
-
 }
 
 void Calendar::addDay(int day, int line, int colonne){
@@ -164,7 +191,3 @@ void Calendar::addDay(int day, int line, int colonne){
 void Calendar::addDay(Day *d){
     days.push_back(d);
 }
-
-//void Calendar::teste(){
-//    std::cout << "sadhsdas " << std::endl;
-//}

@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QRectF>
 #include <QVBoxLayout>
+#include <QColor>
 
 
 class Day : public QWidget
@@ -21,8 +22,6 @@ public:
         calendarColumn = dayOfWeek;
         calendarLine = line;
     }
-    //   void paintEvent(QPaintEvent *);
-
 
     int getDayOfWeek(){
         return calendarColumn;
@@ -42,7 +41,7 @@ public:
         QString s = QString::number(jour);
         n = new QLabel(s);
         n->setAlignment(Qt::AlignLeft);
-        lala->addWidget(n);
+        vLayout->addWidget(n);
     }
 
     void today(){
@@ -55,15 +54,37 @@ public:
 
     }
 
-    void addNoteWidget(QLabel *nota){
-        // pode mudar a cor dependendo do caderno
-        // pode ja criar a label na nota
-        // uma cor por caderno, tentar pegar a cor automaticamente - talvez se usar palettes fica mais facil
+    void addNoteWidget(QLabel *nota, int nnb){
 
-        nota->setStyleSheet("QLabel { background-color : #DDA0DD; color : #000; }");
+        QPalette pal = palette();
+        QColor* color;
+        switch (nnb % 5){
+        case 0:
+            color = new QColor(200, 50, 150, 150);
+            break;
+        case 1:
+            color = new QColor(130, 80, 250, 150);
+            break;
+        case 2:
+            color = new QColor(20, 200, 150, 150);
+            break;
+        case 3:
+            color = new QColor(200, 10, 50, 150);
+            break;
+        case 4:
+            color = new QColor(20, 200, 250, 150);
+            break;
+        default:
+            color = new QColor(20, 200, 250, 150);
+            break;
+        }
 
-     //   lala->setAlignment(Qt::AlignJustify);
-        lala->addWidget(nota);
+        // set white background
+        pal.setColor(QPalette::Background, *color);
+        nota->setAutoFillBackground(true);
+        nota->setPalette(pal);
+
+        vLayout->addWidget(nota);
     }
 
     //public:
@@ -72,7 +93,7 @@ public:
     int month;
     int calendarLine;
     int calendarColumn; // day of week
-    QVBoxLayout *lala;
+    QVBoxLayout *vLayout;
     // vector des cours
 };
 

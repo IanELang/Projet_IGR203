@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     clicklabel.cpp \
     day.cpp \
     notebookchooser.cpp \
-    keywordwidget.cpp
+    keywordwidget.cpp \
+    summarywidget.cpp
 
 HEADERS  += mainwindow.h \
     note.h \
@@ -33,11 +34,13 @@ HEADERS  += mainwindow.h \
     clicklabel.h \
     day.h \
     notebookchooser.h \
-    keywordwidget.h
+    keywordwidget.h \
+    summarywidget.h
 
 FORMS    += mainwindow.ui
 
 QMAKE_CXXFLAGS += -std=c++11
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
+    page.qrc
