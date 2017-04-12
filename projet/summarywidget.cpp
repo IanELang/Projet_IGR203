@@ -62,7 +62,7 @@ SummaryWidget::SummaryWidget(Notebook notebook, MainWindow *_controller) :
             buttonKeyword->setWordWrap(true);
 
             layout->addWidget(buttonKeyword,i+4,0);
-        connect(buttonKeyword, SIGNAL(clicked(int, int)), controller, SLOT(text(int, int)));
+            connect(buttonKeyword, SIGNAL(clicked(int, int)), controller, SLOT(text(int, int)));
     }
 
 }

@@ -10,6 +10,8 @@
 #include "keywordwidget.h"
 #include "calendar.h"
 
+#include "summarywidget.h"
+
 #include <QTabWidget>
 
 using namespace std;
