@@ -132,10 +132,10 @@ Calendar::Calendar(QVector<Notebook> notebooks, QWidget *parent) :
 
     }
 
-    std::cout << data->month() << std::endl;
+    //std::cout << data->month() << std::endl;
     for (int i = 0; i < notebooks.size(); i++) {
         for (int j = 0; j < notebooks[i].pages.size(); j++) {
-            std::cout << notebooks[i].pages[j].creationDate.month() << std::endl;
+            //std::cout << notebooks[i].pages[j].creationDate.month() << std::endl;
             if (notebooks[i].pages[j].creationDate.month() == data->month()) {
                 clickLabel *newLabel = new clickLabel(notebooks[i].name, j, i);
 
