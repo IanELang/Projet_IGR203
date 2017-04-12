@@ -16,7 +16,7 @@
 #include <QToolTip>
 
 
-Calendar::Calendar(QVector<Notebook> const &notebooks, QWidget *parent) :
+Calendar::Calendar(QVector<Notebook> notebooks, QWidget *parent) :
     QWidget(parent)
 {
 

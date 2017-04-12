@@ -79,13 +79,13 @@ void MainWindow::closePage()
 void MainWindow::newPage()
 {
     closePage();
-    notebooks[curNotebook].pages.append(Page());
+    notebooks[curNotebook].pages.append(Page("new page", QDate::currentDate()));
     openPage(curNotebook, notebooks[curNotebook].pages.size() - 1);
 }
 
 void MainWindow::newPage(int numNotebook)
 {
-    notebooks[numNotebook].pages.append(Page());
+    notebooks[numNotebook].pages.append(Page("new page", QDate::currentDate()));
     openPage(numNotebook, notebooks[numNotebook].pages.size() - 1);
 }
 

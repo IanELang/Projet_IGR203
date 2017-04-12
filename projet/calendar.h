@@ -20,7 +20,7 @@ private:
      QGridLayout * grid;
 
 public:
-    Calendar(QVector<Notebook> const &notebooks, QWidget *widget=0);
+    Calendar(QVector<Notebook> notebooks, QWidget *widget=0);
     std::vector<Day*> days;
 
     void addDay(int day, int line, int colonne);
