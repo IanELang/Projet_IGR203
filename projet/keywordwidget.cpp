@@ -61,7 +61,7 @@ KeywordWidget::KeywordWidget(Notebook notebook,  int noteNum, MainWindow *_contr
 
 
     for(int i=0; i<notebook.pages.size(); i++){
-        clickLabel* date = new clickLabel();
+        clickLabel* date = new clickLabel(i, noteNum);
         date->setText(  "<html><b>" + notebook.pages[i].creationDate.toString() + "</b></html>");
         date->setStyleSheet("color:white;");
         QWidget *rectangle2 = new QWidget();
@@ -72,7 +72,7 @@ KeywordWidget::KeywordWidget(Notebook notebook,  int noteNum, MainWindow *_contr
         layout->addWidget(date , 3, i, Qt::AlignCenter);
          date->setFont( QFont( "sans-serif", 12) );
 
-         clickLabel* summary = new clickLabel();
+         clickLabel* summary = new clickLabel(i, noteNum);
          summary->setText( notebook.pages[i].summary);
          summary->setStyleSheet("color:white;");
          QWidget *rectangle4 = new QWidget();

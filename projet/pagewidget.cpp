@@ -26,7 +26,7 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
 
     //return to botebooks
     QPushButton* bnb = new QPushButton();
-    bnb->setIcon(QIcon(":/images/browse.png.png"));
+    bnb->setIcon(QIcon(":/images/exit.png"));
     bnb->setIconSize(QSize(50,50));
     QString bbn = "Return to notebooks";
     bnb->setToolTip(bbn);
