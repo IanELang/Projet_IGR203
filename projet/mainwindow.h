@@ -29,6 +29,7 @@ public:
 
     void openPage(int ntbk, int pg);
     void closePage();
+    void updateCalendar();
 
 public slots:
     void newPage();

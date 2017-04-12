@@ -33,7 +33,6 @@ public:
 private slots:
     void newNote(int ntbNum);
     void reviewNotes(int ntbNum);
-    void reviewSummaries(int ntbNum);
     void addNotebook();
     void importNotebooks();
     void exportNotebooks();

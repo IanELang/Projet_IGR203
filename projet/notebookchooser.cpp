@@ -175,6 +175,7 @@ void NotebookChooser::importNotebooks()
         mw->notebooks.append(i.next());
 
     addNotebooksToGrid();
+    mw->updateCalendar();
 }
 
 void NotebookChooser::exportNotebooks()
@@ -221,12 +222,6 @@ void NotebookChooser::newNote(int ntbNum)
 void NotebookChooser::reviewNotes(int ntbNum)
 {
     mw->browseKeywords(ntbNum);
-}
-
-void NotebookChooser::reviewSummaries(int ntbNum)
-{
-    // abre interface de revisar os cadernos
-    std::cout << "review summaries: " << mw->notebooks.at(ntbNum).name.toStdString() << std::endl;
 }
 
 void NotebookChooser::addNotebook()

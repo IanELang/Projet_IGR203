@@ -38,18 +38,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
 //    this->setCentralWidget(tab);
 
-    QTabWidget*tab = new QTabWidget();
-
-    tab->addTab(new NotebookChooser(notebooks, this), "Notebooks");
-    tab->addTab(new Calendar(notebooks, this), "Calendar");
-
-    this->setCentralWidget(tab);
+    updateCalendar();
     curNotebook = 0;
     curPage = 0;
 
 }
 void MainWindow::loadTab(){
     closePage();
+    updateCalendar();
+}
+
+void MainWindow::updateCalendar(){
     QTabWidget*tab = new QTabWidget();
 
     tab->addTab(new NotebookChooser(notebooks, this), "Notebooks");
