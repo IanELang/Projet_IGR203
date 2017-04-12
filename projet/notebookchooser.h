@@ -16,7 +16,9 @@
 #include <QSpacerItem>
 #include <QScrollArea>
 #include <QResizeEvent>
+#include <QMainWindow>
 #include <QDir>
+#include "mainwindow.h"
 #include "notebook.h"
 
 class NotebookChooser : public QWidget
@@ -38,10 +40,10 @@ private slots:
     void addNotebooksToGrid();
 
 private:
-    QVector<Notebook> notebooks;
     QSignalMapper* newNoteMapper;
     QSignalMapper* reviewMapper;
     QGridLayout* notebookGrid;
+    MainWindow* mw;
 
     int ncols;
 

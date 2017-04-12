@@ -30,12 +30,14 @@ public:
     void openPage(int ntbk, int pg);
     void closePage();
 
-    public slots:
+public slots:
     void newPage();
+    void newPage(int numNotebook);
     void nextPage();
     void prevPage();
     void openFromCalendar(int page, int notebook);
     void browseKeywords();
+    void browseKeywords(int numNotebook);
 };
 
 #endif // MAINWINDOW_H

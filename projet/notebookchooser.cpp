@@ -8,8 +8,9 @@ NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
     this->setMinimumWidth(870);
     this->setMinimumHeight(600);
 
+    mw = (MainWindow*) this->parent();
 
-    this->notebooks = notebooks;
+    mw->notebooks = notebooks;
 
     QSpacerItem* hspacer = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed );
     QSpacerItem* vspacer = new QSpacerItem( 0, 0, QSizePolicy::Fixed, QSizePolicy::Expanding );
@@ -79,7 +80,7 @@ void NotebookChooser::addNotebooksToGrid()
     reviewMapper = new QSignalMapper(this);
     connect(reviewMapper, SIGNAL(mapped(int)), this, SLOT(reviewNotes(int)));
 
-    for(int i = 0; i < notebooks.size(); i++)
+    for(int i = 0; i < mw->notebooks.size(); i++)
     {
         //notebookGrid->addWidget(new QPushButton(notebooks.at(i).name),i%2,i/2);
 
@@ -97,7 +98,7 @@ void NotebookChooser::addNotebooksToGrid()
         noteRepr->setSizePolicy(sizePol);
         QVBoxLayout* notebookLayout = new QVBoxLayout();
 
-        QLabel* title = new QLabel(notebooks.at(i).name);
+        QLabel* title = new QLabel(mw->notebooks.at(i).name);
         title->setAlignment(Qt::AlignCenter);
 
         QPushButton* newButton = new QPushButton("new");
@@ -118,7 +119,7 @@ void NotebookChooser::addNotebooksToGrid()
 
     QPushButton* addNotebook = new QPushButton("Add notebook");
     addNotebook->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
-    notebookGrid->addWidget(addNotebook,notebooks.size()/ncols,notebooks.size()%ncols);
+    notebookGrid->addWidget(addNotebook,mw->notebooks.size()/ncols,mw->notebooks.size()%ncols);
     connect(addNotebook, SIGNAL(clicked( )), this, SLOT(addNotebook( )));
 }
 
@@ -171,7 +172,7 @@ void NotebookChooser::importNotebooks()
 
     QVectorIterator<Notebook> i(newNotebooks);
     while (i.hasNext())
-        notebooks.append(i.next());
+        mw->notebooks.append(i.next());
 
     addNotebooksToGrid();
 }
@@ -179,7 +180,7 @@ void NotebookChooser::importNotebooks()
 void NotebookChooser::exportNotebooks()
 {
 
-    if(notebooks.size() == 0)
+    if(mw->notebooks.size() == 0)
     {
         QMessageBox messageBox;
         messageBox.critical(0,"Error","You have no notebooks to export !");
@@ -206,28 +207,26 @@ void NotebookChooser::exportNotebooks()
     if ( file.open(QIODevice::ReadWrite) )
     {
         QDataStream out( &file );
-        out << notebooks;
+        out << mw->notebooks;
     }
 
 }
 
 void NotebookChooser::newNote(int ntbNum)
 {
-    // abre interface de editar nota do notebook especifico
-    std::cout << "add note to: " << notebooks.at(ntbNum).name.toStdString() << std::endl;
+    mw->newPage(ntbNum);
 }
 
 
 void NotebookChooser::reviewNotes(int ntbNum)
 {
-    // abre interface de revisar os cadernos
-    std::cout << "review notes: " << notebooks.at(ntbNum).name.toStdString() << std::endl;
+    mw->browseKeywords(ntbNum);
 }
 
 void NotebookChooser::reviewSummaries(int ntbNum)
 {
     // abre interface de revisar os cadernos
-    std::cout << "review summaries: " << notebooks.at(ntbNum).name.toStdString() << std::endl;
+    std::cout << "review summaries: " << mw->notebooks.at(ntbNum).name.toStdString() << std::endl;
 }
 
 void NotebookChooser::addNotebook()
@@ -242,7 +241,7 @@ void NotebookChooser::addNotebook()
         Notebook* newNote = new Notebook();
         newNote->name = name;
 
-        notebooks.append(*newNote);
+        mw->notebooks.append(*newNote);
     }
 
     addNotebooksToGrid();

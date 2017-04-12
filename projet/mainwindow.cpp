@@ -67,6 +67,18 @@ void MainWindow::newPage()
     openPage(curNotebook, notebooks[curNotebook].pages.size() - 1);
 }
 
+void MainWindow::newPage(int numNotebook)
+{
+    notebooks[numNotebook].pages.append(Page());
+    openPage(numNotebook, notebooks[numNotebook].pages.size() - 1);
+}
+
+void MainWindow::browseKeywords(int numNotebook)
+{
+    curNotebook = numNotebook;
+    this->setCentralWidget(new KeywordWidget(notebooks[curNotebook], curNotebook, this));
+}
+
 void MainWindow::nextPage()
 {
     closePage();
