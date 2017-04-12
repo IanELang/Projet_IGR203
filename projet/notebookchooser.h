@@ -40,8 +40,7 @@ private slots:
 private:
     QVector<Notebook> notebooks;
     QSignalMapper* newNoteMapper;
-    QSignalMapper* reviewNotesMapper;
-    QSignalMapper* reviewSummariesMapper;
+    QSignalMapper* reviewMapper;
     QGridLayout* notebookGrid;
 
     int ncols;

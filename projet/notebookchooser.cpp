@@ -76,11 +76,8 @@ void NotebookChooser::addNotebooksToGrid()
     newNoteMapper = new QSignalMapper(this);
     connect(newNoteMapper, SIGNAL(mapped(int)), this, SLOT(newNote(int)));
 
-    reviewNotesMapper = new QSignalMapper(this);
-    connect(reviewNotesMapper, SIGNAL(mapped(int)), this, SLOT(reviewNotes(int)));
-
-    reviewSummariesMapper = new QSignalMapper(this);
-    connect(reviewSummariesMapper, SIGNAL(mapped(int)), this, SLOT(reviewSummaries(int)));
+    reviewMapper = new QSignalMapper(this);
+    connect(reviewMapper, SIGNAL(mapped(int)), this, SLOT(reviewNotes(int)));
 
     for(int i = 0; i < notebooks.size(); i++)
     {
@@ -107,18 +104,13 @@ void NotebookChooser::addNotebooksToGrid()
         connect(newButton, SIGNAL(clicked()), newNoteMapper, SLOT(map()));
         newNoteMapper->setMapping(newButton, i);
 
-        QPushButton* reviewNotesButton = new QPushButton("review notes");
-        connect(reviewNotesButton, SIGNAL(clicked()), reviewNotesMapper, SLOT(map()));
-        reviewNotesMapper->setMapping(reviewNotesButton, i);
-
-        QPushButton* reviewSummariesButton = new QPushButton("review summaries");
-        connect(reviewSummariesButton, SIGNAL(clicked()), reviewSummariesMapper, SLOT(map()));
-        reviewSummariesMapper->setMapping(reviewSummariesButton, i);
+        QPushButton* reviewButton = new QPushButton("review");
+        connect(reviewButton, SIGNAL(clicked()), reviewMapper, SLOT(map()));
+        reviewMapper->setMapping(reviewButton, i);
 
         notebookLayout->addWidget(title);
         notebookLayout->addWidget(newButton);
-        notebookLayout->addWidget(reviewNotesButton);
-        notebookLayout->addWidget(reviewSummariesButton);
+        notebookLayout->addWidget(reviewButton);
 
         noteRepr->setLayout(notebookLayout);
         notebookGrid->addWidget(noteRepr,i/ncols,i%ncols);
