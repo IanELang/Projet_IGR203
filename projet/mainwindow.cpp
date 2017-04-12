@@ -10,6 +10,8 @@
 #include "keywordwidget.h"
 #include "calendar.h"
 
+#include <QTabWidget>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -25,12 +27,23 @@ MainWindow::MainWindow(QWidget *parent) :
     int a;
     in >> a;
     //this->setCentralWidget(new PageWidget(notebooks[0].pages[0], this, true, true));
-    this->setCentralWidget(new Calendar(notebooks, this));
-    //this->setCentralWidget(new NotebookChooser());
+    //cal = new Calendar(notebooks, this);
+
+    QTabWidget*tab = new QTabWidget();
+
+    tab->addTab(new NotebookChooser(notebooks, this), "Notebooks");
+    tab->addTab(new Calendar(notebooks, this), "Calendar");
+
+    this->setCentralWidget(tab);
+   // this->setCentralWidget(new Calendar(notebooks, this));
     //openPage(0, 0);
     curNotebook = 0;
     curPage = 0;
     terminal();
+
+
+    //this->setCentralWidget( new NotebookChooser(notebooks, this));
+
 }
 
 MainWindow::~MainWindow()
