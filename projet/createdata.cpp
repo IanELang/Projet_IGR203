@@ -7,15 +7,16 @@ void createData()
 {
     QVector<Notebook> ntbks;
     Notebook a("Countries");
-    Page a1("Asia", QDate(2017, 4, 16));
+    Page a1("Asian Countries", QDate(2017, 4, 6));
     a1.notes.push_back(Note("Afghanistan, officially the Islamic Republic of Afghanistan, is a landlocked country located within South Asia and Central Asia.[9][10] It has a population of approximately 32 million, making it the 42nd most populous country in the world.", "Afghanistan"));
     a1.notes.push_back(Note("Jordan, is an Arab kingdom in Western Asia, on the East Bank of the Jordan River. Jordan is bordered by Saudi Arabia to the east and south; Iraq to the north-east; Syria to the north; Israel, Palestine and the Dead Sea to the west; and the Red Sea in its extreme south-west.", "Jordan"));
     a1.notes.push_back(Note("Lebanon, is a sovereign state in Western Asia. It is bordered by Syria to the north and east and Israel to the south, while Cyprus is west across the Mediterranean Sea. ", "Lebanon"));
-    a1.notes.push_back(Note("Largest country in Europe", "Also russia"));
+    a1.notes.push_back(Note("Largest country in the world", "Russia"));
     a.pages.push_back(a1);
-    Page a2("America", QDate(2017, 4, 6));
+    Page a2("America", QDate(2017, 4, 26));
     a2.notes.push_back(Note("Most thunder strikes per year", "Brazil"));
-    a2.notes.push_back(Note("Best (?) cheese", "France"));
+    a2.notes.push_back(Note("Country that crosses the most meridians", "Chile"));
+    a2.notes.push_back(Note("Has the andes", "Peru"));
     a.pages.push_back(a2);
     ntbks.push_back(a);
 

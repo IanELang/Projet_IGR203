@@ -30,8 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
     in >> notebooks;
     int a;
     in >> a;
-    //this->setCentralWidget(new PageWidget(notebooks[0].pages[0], this, true, true));
-    //cal = new Calendar(notebooks, this);
 
     QTabWidget*tab = new QTabWidget();
 
@@ -39,12 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
     tab->addTab(new Calendar(notebooks, this), "Calendar");
 
     this->setCentralWidget(tab);
-   // this->setCentralWidget(new Calendar(notebooks, this));
-    //openPage(0, 0);
     curNotebook = 0;
     curPage = 0;
-
-    //this->setCentralWidget( new NotebookChooser(notebooks, this));
 
 }
 
@@ -55,6 +49,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::openPage(int ntbk, int pg)
 {
+    curPage = pg;
+    curNotebook = ntbk;
     content = new PageWidget(notebooks[ntbk].pages[pg], this, pg < notebooks[ntbk].pages.size()-1, pg != 0);
     this->setCentralWidget(content);
 }
@@ -66,8 +62,9 @@ void MainWindow::closePage()
 
 void MainWindow::newPage()
 {
+    closePage();
     notebooks[curNotebook].pages.append(Page());
-    nextPage();
+    openPage(curNotebook, notebooks[curNotebook].pages.size() - 1);
 }
 
 void MainWindow::nextPage()
