@@ -20,16 +20,12 @@ private:
      QGridLayout * grid;
 
 public:
-    Calendar(QVector<Notebook> notebooks, QWidget *widget=0);
+    Calendar(QVector<Notebook> const & notebooks, QWidget *widget=0);
     std::vector<Day*> days;
 
     void addDay(int day, int line, int colonne);
     void addDay(Day *d);
     void addNote(int day, QLabel *nota, int nnb);
-
-public slots:
-    void teste(){ std::cout << "sadhsdas " << std::endl;}
-    //void mostrar();
 
 
 };

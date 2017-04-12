@@ -16,7 +16,7 @@
 #include <QToolTip>
 
 
-Calendar::Calendar(QVector<Notebook> notebooks, QWidget *parent) :
+Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
     QWidget(parent)
 {
 
@@ -72,6 +72,7 @@ Calendar::Calendar(QVector<Notebook> notebooks, QWidget *parent) :
 
     grid->setHorizontalSpacing(4);
     grid->setVerticalSpacing(4);
+
 
     grid->setRowMinimumHeight(0, minHeight);
     grid->setRowMinimumHeight(1, minHeight);
