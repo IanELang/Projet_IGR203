@@ -5,8 +5,6 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QGroupBox>
-
-
 #include <iostream>
 
 #include "pagewidget.h"
@@ -26,54 +24,62 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
 
     QGroupBox *groupBox = new QGroupBox();
 
-           //Browse
-           QPushButton* bk = new QPushButton();
-           bk->setIcon(QIcon(":/images/browse.png.png"));
-           bk->setIconSize(QSize(50,50));
-           QString browse = "Browse Keywords";
-           bk->setToolTip(browse);
+    //return to botebooks
+    QPushButton* bnb = new QPushButton();
+    bnb->setIcon(QIcon(":/images/browse.png.png"));
+    bnb->setIconSize(QSize(50,50));
+    QString bbn = "Return to notebooks";
+    bnb->setToolTip(bbn);
 
-           //Previous Page
-           QPushButton* prev = new QPushButton();
-           prev->setIcon(QIcon(":/images/next2.png"));
-           QString previous = "Previous Page";
-           prev->setToolTip(previous);
-           prev->setIconSize(QSize(50,50));
+    //Browse
+    QPushButton* bk = new QPushButton();
+    bk->setIcon(QIcon(":/images/browse.png.png"));
+    bk->setIconSize(QSize(50,50));
+    QString browse = "Browse Keywords";
+    bk->setToolTip(browse);
 
-            //Next Page
-           QPushButton* nextP = new QPushButton();
-           nextP->setIcon(QIcon(":/images/next.png"));
-           QString next = "Next Page";
-           nextP->setToolTip(next);
-           nextP->setIconSize(QSize(50,50));
+    //Previous Page
+    QPushButton* prev = new QPushButton();
+    prev->setIcon(QIcon(":/images/next2.png"));
+    QString previous = "Previous Page";
+    prev->setToolTip(previous);
+    prev->setIconSize(QSize(50,50));
 
-
-           //New Page
-           QPushButton* newPage = new QPushButton();
-           newPage->setIcon(QIcon(":/images/newPage.png"));
-           QString newP = "New Page";
-           newPage->setToolTip(newP);
-           newPage->setIconSize(QSize(50,50));
-
-           //New note
-           QPushButton* button = new QPushButton();
-           QString newN = "New Note";
-           button->setToolTip(newN);
-           button->setIcon(QIcon(":/images/newNote.png"));
-           button->setIconSize(QSize(50,50));
+    //Next Page
+    QPushButton* nextP = new QPushButton();
+    nextP->setIcon(QIcon(":/images/next.png"));
+    QString next = "Next Page";
+    nextP->setToolTip(next);
+    nextP->setIconSize(QSize(50,50));
 
 
-           QHBoxLayout *hbox = new QHBoxLayout;
-               hbox->addWidget(bk);
-               hbox->addWidget(prev);
-               hbox->addWidget(nextP);
-               hbox->addWidget(newPage);
-               hbox->addWidget(button);
-               hbox->addStretch(1);
-               groupBox->setLayout(hbox);
+    //New Page
+    QPushButton* newPage = new QPushButton();
+    newPage->setIcon(QIcon(":/images/newPage.png"));
+    QString newP = "New Page";
+    newPage->setToolTip(newP);
+    newPage->setIconSize(QSize(50,50));
+
+    //New note
+    QPushButton* button = new QPushButton();
+    QString newN = "New Note";
+    button->setToolTip(newN);
+    button->setIcon(QIcon(":/images/newNote.png"));
+    button->setIconSize(QSize(50,50));
 
 
-           vLayout->addWidget(groupBox);
+    QHBoxLayout *hbox = new QHBoxLayout;
+    hbox->addWidget(bnb);
+    hbox->addWidget(bk);
+    hbox->addWidget(prev);
+    hbox->addWidget(nextP);
+    hbox->addWidget(newPage);
+    hbox->addWidget(button);
+    hbox->addStretch(1);
+    groupBox->setLayout(hbox);
+
+
+    vLayout->addWidget(groupBox);
 
 
 
@@ -86,12 +92,12 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
 
 
     if (hasSuc) {
-       // QPushButton* next = new QPushButton("Next Page");
-       // vLayout->addWidget(next);
+        // QPushButton* next = new QPushButton("Next Page");
+        // vLayout->addWidget(next);
         connect(nextP, SIGNAL(clicked()), controller, SLOT(nextPage()));
     }
     if (hasPred) {
-       // QPushButton* prev = new QPushButton("Previous Page");
+        // QPushButton* prev = new QPushButton("Previous Page");
         //vLayout->addWidget(prev);
         connect(prev, SIGNAL(clicked()), controller, SLOT(prevPage()));
     }
@@ -100,17 +106,19 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
 
     connect(button, SIGNAL(clicked()), this, SLOT(addText()));
 
-   // QPushButton* newP = new QPushButton("New Page");
-   // vLayout->addWidget(newP);
+    connect(bnb, SIGNAL(clicked()), controller, SLOT(loadTab()));
+
+
+    // QPushButton* newP = new QPushButton("New Page");
+    // vLayout->addWidget(newP);
     connect(newPage, SIGNAL(clicked()), controller, SLOT(newPage()));
 
 
-   // QPushButton* bk = new QPushButton("Browse Keywords");
-   // vLayout->addWidget(bk);
+    // QPushButton* bk = new QPushButton("Browse Keywords");
+    // vLayout->addWidget(bk);
     connect(bk, SIGNAL(clicked()), controller, SLOT(browseKeywords()));
 
-    QPushButton* bs = new QPushButton("Browse Summaries");
-    vLayout->addWidget(bs);
+
     //connect(bs, SIGNAL(clicked()), controller, SLOT(browseKeywords()));
     QWidget * gallerie = new QWidget();
     vLayout->addWidget(gallerie);
