@@ -30,11 +30,6 @@ public:
     void openPage(int ntbk, int pg);
     void closePage();
 
-
-    //For development
-    void createData();
-    void terminal();
-
     public slots:
     void newPage();
     void nextPage();

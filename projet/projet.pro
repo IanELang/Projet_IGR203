@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     day.cpp \
     notebookchooser.cpp \
     keywordwidget.cpp \
-    summarywidget.cpp
+    summarywidget.cpp \
+    createdata.cpp
 
 HEADERS  += mainwindow.h \
     note.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
     day.h \
     notebookchooser.h \
     keywordwidget.h \
-    summarywidget.h
+    summarywidget.h \
+    createdata.h
 
 FORMS    += mainwindow.ui
 
