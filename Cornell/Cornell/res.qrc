@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Resources/user.png</file>
-        <file>Resources/note.png</file>
-    </qresource>
-</RCC>
