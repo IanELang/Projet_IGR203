@@ -18,13 +18,21 @@ clickLabel::clickLabel(int n_Page, int n_Notebook){
     notebookNumber = n_Notebook;
 }
 
-clickLabel::~clickLabel()
-{
+void clickLabel::enterEvent(QEvent *ev){
+    dse = new QGraphicsOpacityEffect();
+    dse->setOpacity(0.5);
+    this->setGraphicsEffect(dse);
+
+    emit hover();
 }
 
-void clickLabel::mousePressEvent(QMouseEvent* event)
-{
-    //emit kaka(pageNumber, notebookNumber);
-    emit clicked(pageNumber, notebookNumber);
+void clickLabel::leaveEvent(QEvent *ev){
+    dse->setOpacity(1.0);
+}
 
+clickLabel::~clickLabel(){
+}
+
+void clickLabel::mousePressEvent(QMouseEvent* event){
+    emit clicked(pageNumber, notebookNumber);
 }
