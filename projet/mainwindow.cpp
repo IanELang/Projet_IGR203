@@ -49,7 +49,8 @@ void MainWindow::loadTab(){
 }
 
 void MainWindow::updateCalendar(){
-    QTabWidget*tab = new QTabWidget();
+    //QTabWidget*tab = new QTabWidget();
+    tab = new QTabWidget();
 
     tab->addTab(new NotebookChooser(notebooks, this), "Notebooks");
     tab->addTab(new Calendar(notebooks, this), "Calendar");
@@ -67,7 +68,11 @@ void MainWindow::openPage(int ntbk, int pg)
     curPage = pg;
     curNotebook = ntbk;
     content = new PageWidget(notebooks[ntbk].pages[pg], this, pg < notebooks[ntbk].pages.size()-1, pg != 0);
-    this->setCentralWidget(content);
+    //this->setCentralWidget(content);
+    updateCalendar();
+    tab->insertTab(2, content, notebooks[ntbk].name);
+    tab->setCurrentIndex(2);
+
 }
 
 void MainWindow::closePage()
