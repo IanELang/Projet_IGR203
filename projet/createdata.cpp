@@ -21,13 +21,17 @@ void createData()
     ntbks.push_back(a);
 
     Notebook b("IGR 202");
-    Page b1("Marajo", QDate(2017, 4, 1));
-    b1.notes.push_back(Note("Brazil", "Location"));
-    b1.notes.push_back(Note("Norte", "Region"));
+    Page b1("Synthese d'images: c'est le processus", QDate(2017, 4, 1));
+    b1.notes.push_back(Note("C'est la simulation du transport de la lumiere, de la source au capteur dans une scene virtuel", "Rendu base physique"));
+    b1.notes.push_back(Note("Dans les systemes interactifs, on calcule une approximation geometrique et radiometrique de la scene avec la GPU", "Rendu temps-reel"));
+    b1.notes.push_back(Note("La scene 3d est une collection de modeles: de capteur, de geometrie, de apparence, de lumieres...", "Modeles de scenes 3d"));
+    b1.notes.push_back(Note("La maillage est le modele geometrique dominant en rendu, et est definie par un ensemble de faces polygonales F indexant des sommets V", "Surface maillee"));
     b.pages.push_back(b1);
-    Page b2("Australia", QDate(2017, 8, 3));
-    b2.notes.push_back(Note("Oceania", "Location"));
-    b2.notes.push_back(Note("Norte", "Region"));
+    Page b2("Visibilite: ce cours a discute plusiers techniques utilisees dans la determination du ensemble de primitives visibles/cachees depuis un point donne", QDate(2017, 8, 3));
+    b2.notes.push_back(Note("C'est la discratisation d'un polygone dans une grille. L'elimination ", "Rasterisation"));
+    b2.notes.push_back(Note("Elimine les polygones hors du champ de vision", "Frustrum culling"));
+    b2.notes.push_back(Note("Ordonnancement général des polygones le long de l’axe de vue, dessin de loin en proche de la liste ordonnée", "Algorithme du peintre"));
+    b2.notes.push_back(Note("Mantenir un tampon de la meme taille que le tampon coleur de l'ecran, mas stockant pour chaque pixel la porfondeur de la geometrie recouvrant", "Z-Buffer"));
     b.pages.push_back(b2);
     ntbks.push_back(b);
 
