@@ -31,8 +31,6 @@ public:
     void closePage();
     void updateCalendar();
 
-    QTabWidget*tab;
-
 public slots:
     void newPage();
     void newPage(int numNotebook);

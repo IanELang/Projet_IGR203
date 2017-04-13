@@ -69,7 +69,7 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
 
 
     QHBoxLayout *hbox = new QHBoxLayout;
-   // hbox->addWidget(bnb);
+    hbox->addWidget(bnb);
     hbox->addWidget(bk);
     hbox->addWidget(prev);
     hbox->addWidget(nextP);
@@ -106,7 +106,7 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
 
     connect(button, SIGNAL(clicked()), this, SLOT(addText()));
 
-   // connect(bnb, SIGNAL(clicked()), controller, SLOT(loadTab()));
+    connect(bnb, SIGNAL(clicked()), controller, SLOT(loadTab()));
 
 
     // QPushButton* newP = new QPushButton("New Page");
