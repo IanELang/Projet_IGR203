@@ -47,7 +47,7 @@ KeywordWidget::KeywordWidget(Notebook notebook,  int noteNum, MainWindow *_contr
 
     QGridLayout *layout = new QGridLayout();
     gallery->setLayout(layout);
-    clickLabel* notebookName = new clickLabel();
+    clickLabel* notebookName = new clickLabel(0, noteNum);
     QWidget *rectangle1 = new QWidget();
     QHBoxLayout *layout2 = new QHBoxLayout(rectangle1);
     notebookName->setText(  "<html><b>" + notebook.name + "</b></html>");

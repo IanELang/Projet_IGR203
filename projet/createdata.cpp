@@ -20,7 +20,7 @@ void createData()
     a.pages.push_back(a2);
     ntbks.push_back(a);
 
-    Notebook b("IGR 203");
+    Notebook b("IGR 202");
     Page b1("Synthese d'images: c'est le processus", QDate(2017, 4, 1));
     b1.notes.push_back(Note("C'est la simulation du transport de la lumiere, de la source au capteur dans une scene virtuel", "Rendu base physique"));
     b1.notes.push_back(Note("Dans les systemes interactifs, on calcule une approximation geometrique et radiometrique de la scene avec la GPU", "Rendu temps-reel"));
@@ -34,6 +34,21 @@ void createData()
     b2.notes.push_back(Note("Mantenir un tampon de la meme taille que le tampon coleur de l'ecran, mas stockant pour chaque pixel la porfondeur de la geometrie recouvrant", "Z-Buffer"));
     b.pages.push_back(b2);
     ntbks.push_back(b);
+
+    Notebook c("IGR 203");
+    Page c1("Perception/Action: Ce cours a presente des formules et techniques pour evaluer comment l'utilisateur peut percevoir et agir dans une IHM", QDate(2017, 4, 1));
+    c1.notes.push_back(Note("C'est la simulation du transport de la lumiere, de la source au capteur dans une scene virtuel", "Rendu base physique"));
+    c1.notes.push_back(Note("Dans les systemes interactifs, on calcule une approximation geometrique et radiometrique de la scene avec la GPU", "Rendu temps-reel"));
+    c1.notes.push_back(Note("La scene 3d est une collection de modeles: de capteur, de geometrie, de apparence, de lumieres...", "Modeles de scenes 3d"));
+    c1.notes.push_back(Note("La maillage est le modele geometrique dominant en rendu, et est definie par un ensemble de faces polygonales F indexant des sommets V", "Surface maillee"));
+    c.pages.push_back(c1);
+    Page c2("Visibilite: ce cours a discute plusiers techniques utilisees dans la determination du ensemble de primitives visibles/cachees depuis un point donne", QDate(2017, 8, 3));
+    c2.notes.push_back(Note("C'est la discratisation d'un polygone dans une grille. L'elimination ", "Rasterisation"));
+    c2.notes.push_back(Note("Elimine les polygones hors du champ de vision", "Frustrum culling"));
+    c2.notes.push_back(Note("Ordonnancement général des polygones le long de l’axe de vue, dessin de loin en proche de la liste ordonnée", "Algorithme du peintre"));
+    c2.notes.push_back(Note("Mantenir un tampon de la meme taille que le tampon coleur de l'ecran, mas stockant pour chaque pixel la porfondeur de la geometrie recouvrant", "Z-Buffer"));
+    c.pages.push_back(c2);
+    ntbks.push_back(c);
 
     QFile file("file.xxx");
     file.open(QIODevice::WriteOnly);
