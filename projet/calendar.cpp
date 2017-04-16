@@ -74,11 +74,11 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
     grid->setVerticalSpacing(4);
 
 
-    grid->setRowMinimumHeight(0, minHeight);
-    grid->setRowMinimumHeight(1, minHeight);
-    grid->setRowMinimumHeight(2, minHeight);
-    grid->setRowMinimumHeight(3, minHeight);
-    grid->setRowMinimumHeight(4, minHeight);
+//    grid->setRowMinimumHeight(0, minHeight);
+//    grid->setRowMinimumHeight(1, minHeight);
+//    grid->setRowMinimumHeight(2, minHeight);
+//    grid->setRowMinimumHeight(3, minHeight);
+//    grid->setRowMinimumHeight(4, minHeight);
 
     grid->setColumnMinimumWidth(1, minmWidth);
     grid->setColumnMinimumWidth(2, minmWidth);
@@ -102,6 +102,7 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
         d->setDay(i, ligne, aux);
         this->addDay(d);
         grid->addWidget(d, ligne, aux);
+        grid->setRowMinimumHeight(ligne, minHeight);
 
         aux--;
 
@@ -123,6 +124,7 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
         if (i == a) d->today();
 
         grid->addWidget(d, ligne, aux);
+        grid->setRowMinimumHeight(ligne, minHeight);
 
         aux++;
 
