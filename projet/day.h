@@ -57,6 +57,7 @@ public:
     void addNoteWidget(QLabel *nota, int nnb){
 
         QPalette pal = palette();
+
         QColor* color;
         switch (nnb % 5){
         case 0:

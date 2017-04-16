@@ -1,4 +1,5 @@
 #include "notebookchooser.h"
+#include "clicklabel.h"
 
 NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
     QWidget(parent)
@@ -27,11 +28,11 @@ NotebookChooser::NotebookChooser(QVector<Notebook> notebooks, QWidget *parent) :
     global->addLayout(mainBar);
 
 
-// nao sei se a tab vai funcionar bem
-//    QPushButton *calendarButton = new QPushButton(this);
-//    calendarButton->setText(tr("see calendar"));
-//    connect(calendarButton, SIGNAL(clicked( )), this->parent(), SLOT(openCalendar( )));
-//    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
+    // nao sei se a tab vai funcionar bem
+    //    QPushButton *calendarButton = new QPushButton(this);
+    //    calendarButton->setText(tr("see calendar"));
+    //    connect(calendarButton, SIGNAL(clicked( )), this->parent(), SLOT(openCalendar( )));
+    //    mainBar->addWidget(calendarButton, Qt::AlignVCenter);
 
     notebookGrid->setHorizontalSpacing(20);
     notebookGrid->setVerticalSpacing(20);
@@ -84,6 +85,28 @@ void NotebookChooser::addNotebooksToGrid()
     {
         //notebookGrid->addWidget(new QPushButton(notebooks.at(i).name),i%2,i/2);
 
+        switch (i % 5){
+        case 0:
+            mw->notebooks[i].color = new QColor(200, 50, 150, 150);
+            break;
+        case 1:
+            mw->notebooks[i].color = new QColor(130, 80, 250, 150);
+            break;
+        case 2:
+            mw->notebooks[i].color = new QColor(20, 200, 150, 150);
+            break;
+        case 3:
+            mw->notebooks[i].color = new QColor(200, 10, 50, 150);
+            break;
+        case 4:
+            mw->notebooks[i].color = new QColor(20, 200, 250, 150);
+            break;
+        default:
+            mw->notebooks[i].color = new QColor(20, 200, 250, 150);
+            break;
+        }
+
+
         QLabel* noteRepr = new QLabel;
         QPixmap noteBack(":/Resources/note_alpha.png");
         QPixmap noteBackScaled = noteBack.scaled(QSize(500,500),  Qt::KeepAspectRatio);
@@ -99,6 +122,15 @@ void NotebookChooser::addNotebooksToGrid()
         QVBoxLayout* notebookLayout = new QVBoxLayout();
 
         QLabel* title = new QLabel(mw->notebooks.at(i).name);
+
+        QPalette pal = palette();
+
+        // set white background
+        pal.setColor(QPalette::Background, *mw->notebooks[i].color);
+        title->setAutoFillBackground(true);
+        title->setPalette(pal);
+        title->show();
+
         title->setAlignment(Qt::AlignCenter);
 
         QPushButton* newButton = new QPushButton("new");
@@ -155,14 +187,14 @@ void NotebookChooser::importNotebooks()
     }
 
     QString fileName = QFileDialog::getOpenFileName(this,
-        tr("Import file:"), notesPath, tr("Notebook Files (*.ntb)"));
+                                                    tr("Import file:"), notesPath, tr("Notebook Files (*.ntb)"));
 
     // http://doc.qt.io/qt-5/qtwidgets-tutorials-addressbook-part6-example.html
     QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly)) {
         QMessageBox::information(this, tr("Unable to open file"),
-            file.errorString());
+                                 file.errorString());
         return;
     }
 
@@ -196,7 +228,7 @@ void NotebookChooser::exportNotebooks()
     }
 
     QString fileName = QFileDialog::getSaveFileName(this,
-        tr("Export to:"), notesPath, tr("Notebook Files (*.ntb)"));
+                                                    tr("Export to:"), notesPath, tr("Notebook Files (*.ntb)"));
 
     if(!fileName.endsWith(".ntb"))
     {
@@ -228,8 +260,8 @@ void NotebookChooser::addNotebook()
 {
     bool ok;
     QString name = QInputDialog::getText(this, tr("QInputDialog::getText()"),
-                                           tr("New notebook name:"), QLineEdit::Normal,
-                                           QDir::home().dirName(), &ok);
+                                         tr("New notebook name:"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &ok);
 
     if (ok && !name.isEmpty())
     {

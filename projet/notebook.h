@@ -3,6 +3,7 @@
 
 #include <QDataStream>
 #include <QVector>
+#include <QColor>
 #include "page.h"
 
 class Notebook
@@ -17,6 +18,7 @@ public:
 
     QString name;
     QVector<Page> pages;
+    QColor * color;
 };
 
 #endif // NOTEBOOK_H
