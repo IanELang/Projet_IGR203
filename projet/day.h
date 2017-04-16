@@ -85,6 +85,7 @@ public:
         nota->setPalette(pal);
 
         vLayout->addWidget(nota);
+        vLayout->setSpacing(2);
     }
 
     //public:
