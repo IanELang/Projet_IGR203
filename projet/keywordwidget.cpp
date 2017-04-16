@@ -73,7 +73,7 @@ KeywordWidget::KeywordWidget(Notebook notebook,  int noteNum, MainWindow *_contr
          date->setFont( QFont( "sans-serif", 12) );
 
          clickLabel* summary = new clickLabel(i, noteNum);
-         summary->setText( notebook.pages[i].summary);
+         summary->setText( notebook.pages[i].summary.left(30) + "...");
          summary->setStyleSheet("color:white;");
          QWidget *rectangle4 = new QWidget();
          QHBoxLayout *layout4 = new QHBoxLayout(rectangle4);

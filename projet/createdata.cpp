@@ -20,7 +20,7 @@ void createData()
     a.pages.push_back(a2);
     ntbks.push_back(a);
 
-    Notebook b("IGR 202");
+    Notebook b("IGR 203");
     Page b1("Synthese d'images: c'est le processus", QDate(2017, 4, 1));
     b1.notes.push_back(Note("C'est la simulation du transport de la lumiere, de la source au capteur dans une scene virtuel", "Rendu base physique"));
     b1.notes.push_back(Note("Dans les systemes interactifs, on calcule une approximation geometrique et radiometrique de la scene avec la GPU", "Rendu temps-reel"));

@@ -18,5 +18,6 @@
         <file>images/copy.png</file>
         <file>images/browse.png.png</file>
         <file>images/browse.png</file>
+        <file>images/exit.png</file>
     </qresource>
 </RCC>
