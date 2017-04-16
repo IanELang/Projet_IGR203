@@ -74,11 +74,11 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
     grid->setVerticalSpacing(4);
 
 
-//    grid->setRowMinimumHeight(0, minHeight);
-//    grid->setRowMinimumHeight(1, minHeight);
-//    grid->setRowMinimumHeight(2, minHeight);
-//    grid->setRowMinimumHeight(3, minHeight);
-//    grid->setRowMinimumHeight(4, minHeight);
+    //    grid->setRowMinimumHeight(0, minHeight);
+    //    grid->setRowMinimumHeight(1, minHeight);
+    //    grid->setRowMinimumHeight(2, minHeight);
+    //    grid->setRowMinimumHeight(3, minHeight);
+    //    grid->setRowMinimumHeight(4, minHeight);
 
     grid->setColumnMinimumWidth(1, minmWidth);
     grid->setColumnMinimumWidth(2, minmWidth);
@@ -147,10 +147,16 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
 
                 QString keys="";
 
-                for (int k = 0; k < notebooks[i].pages[j].notes.size(); k++ )
-                    keys = keys + notebooks[i].pages[j].notes[k].keyword + ", ";
+                for (int k = 0; k < notebooks[i].pages[j].notes.size(); k++ ){
+                    if ((k + 1) % 2 == 0 && k != notebooks[i].pages[j].notes.size() -1)
+                        keys = keys + notebooks[i].pages[j].notes[k].keyword + "\n                  ";
+                    else
+                        keys = keys + notebooks[i].pages[j].notes[k].keyword + ", ";
+                }
 
-                newLabel->setToolTip("Summary: " + notebooks[i].pages[j].summary + "\nKeywords: " + keys);
+                QString summary = notebooks[i].pages[j].summary;
+                QString subString_summary = summary.left(40) + " ...";
+                newLabel->setToolTip("Summary: " + subString_summary + "\nKeywords: " + keys);
 
                 QToolTip * tt;
                 QFont sansFont("Helvetica [Cronyx]", 16);
