@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     //ui->setupUi(this);
     createData();
-    QFile file("file.xxx");
+    QFile file("file.ntb");
     file.open(QIODevice::ReadOnly);
     QDataStream in(&file);
     in >> notebooks;
