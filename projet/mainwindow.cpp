@@ -66,7 +66,7 @@ void MainWindow::openPage(int ntbk, int pg)
 {
     curPage = pg;
     curNotebook = ntbk;
-    content = new PageWidget(notebooks[ntbk].pages[pg], this, pg < notebooks[ntbk].pages.size()-1, pg != 0);
+    content = new PageWidget(notebooks[ntbk].pages[pg], this, pg < notebooks[ntbk].pages.size()-1, pg != 0, notebooks[curNotebook].name);
     this->setCentralWidget(content);
 }
 

@@ -9,7 +9,7 @@
 
 #include "pagewidget.h"
 
-PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool hasPred) :
+PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool hasPred, QString title) :
     controller(_controller), date(page.creationDate)
 {
     QScrollArea* gallery = this;
@@ -67,6 +67,7 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
     button->setIcon(QIcon(":/images/newNote.png"));
     button->setIconSize(QSize(50,50));
 
+    QLabel *noteName = new QLabel("<span style=\" font-size:24pt; font-weight:600; \">" + title + "</span>");
 
     QHBoxLayout *hbox = new QHBoxLayout;
     hbox->addWidget(bnb);
@@ -75,6 +76,7 @@ PageWidget::PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool has
     hbox->addWidget(nextP);
     hbox->addWidget(newPage);
     hbox->addWidget(button);
+    hbox->addWidget(noteName);
     hbox->addStretch(1);
     groupBox->setLayout(hbox);
 

@@ -18,7 +18,7 @@ class PageWidget : public QScrollArea
 
 public:
     PageWidget();
-    PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool hasPred);
+    PageWidget(Page page, MainWindow *_controller, bool hasSuc, bool hasPred, QString title);
     Page toPage();
 
 public slots:

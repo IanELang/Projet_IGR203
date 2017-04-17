@@ -7,9 +7,9 @@ void createData()
 {
     QVector<Notebook> ntbks;
     Notebook a("IGR 201");
-    Page a1("Asian Countries", QDate(2017, 4, 6));
-    a1.notes.push_back(Note("Afghanistan, officially the Islamic Republic of Afghanistan, is a landlocked country located within South Asia and Central Asia.[9][10] It has a population of approximately 32 million, making it the 42nd most populous country in the world.", "Afghanistan"));
-    a1.notes.push_back(Note("Jordan, is an Arab kingdom in Western Asia, on the East Bank of the Jordan River. Jordan is bordered by Saudi Arabia to the east and south; Iraq to the north-east; Syria to the north; Israel, Palestine and the Dead Sea to the west; and the Red Sea in its extreme south-west.", "Jordan"));
+    Page a1("Qt", QDate(2017, 4, 6));
+    a1.notes.push_back(Note("", "Signals and slots"));
+    a1.notes.push_back(Note("", "Layouts"));
     a1.notes.push_back(Note("Lebanon, is a sovereign state in Western Asia. It is bordered by Syria to the north and east and Israel to the south, while Cyprus is west across the Mediterranean Sea. ", "Lebanon"));
     a1.notes.push_back(Note("Largest country in the world", "Russia"));
     a.pages.push_back(a1);
@@ -36,17 +36,20 @@ void createData()
     c2.notes.push_back(Note("Qt a un repertoire de gestes predefinis (panGesture, pinchGesture, grabGesture). En sous-classant QGesture et QGestureRecognizer, on peut creer des nouveaux gestes et les reconnaitre.", "Interaction gestuelle"));
     c.pages.push_back(c2);
     Page c3("Techniques emergentes", QDate(2017, 4, 14));
-    c3.notes.push_back(Note("AR glasses, projection mapping", "Realite augmente"));
-    c3.notes.push_back(Note("ARToolkit, MagicCube", "Interfaces tangibles"));
-    c3.notes.push_back(Note("Morphees, Haptic Edge", "Shape-changing interfaces"));
-    c3.notes.push_back(Note("Occultation et precision insufissante dans la interaction avec le doigt. Shift, TapTap... pour resoudre", "Fat finger problem"));
-    c3.notes.push_back(Note("", "Bezels"));
-    c3.notes.push_back(Note("", "Menus gestuels"));
-    c3.notes.push_back(Note("", "Grands ecrans"));
+    c3.notes.push_back(Note("Examples: AR glasses, projection mapping", "Realite augmente"));
+    c3.notes.push_back(Note("Examples: ARToolkit, MagicCube", "Interfaces tangibles"));
+    c3.notes.push_back(Note("Examples: Morphees, Haptic Edge", "Shape-changing interfaces"));
+    c3.notes.push_back(Note("Examples: Occultation et precision insufissante dans la interaction avec le doigt. Shift, TapTap... pour resoudre", "Fat finger problem"));
+    c3.notes.push_back(Note("Examples: BezelSwipe, BezelTap", "Bezels"));
+    c3.notes.push_back(Note("Examples: Wavelet menus, MicroRolls", "Menus gestuels"));
+    c3.notes.push_back(Note("Examples: Frustrated Total Internal Reflection", "Grands ecrans"));
     c.pages.push_back(c3);
     Page c4("Conception centree utilisateur IHM", QDate(2017, 4, 18));
     c4.notes.push_back(Note("Une IHM est sujete a des contraintes Humains, technologiques et de tache", "Contraintes d'une IHM"));
-    c4.notes.push_back(Note("Collecte, organization et representation de donnes", "Comprendre l'utilisateur"));
+    c4.notes.push_back(Note("Pour comprendre l'utilisateur if faut collecter, organiser et representer des donnes", "Comprendre l'utilisateur"));
+    c4.notes.push_back(Note("Technique utile pour la analyse qualitative des donnees. On ecrit les observations dans un papier et le met dans un mur. On met ensemble de itens qui ont une affinite", "Affinity Diagram"));
+    c4.notes.push_back(Note("Pour comprendre l'utilisateur if faut collecter, organiser et representer des donnes", "Comprendre l'utilisateur"));
+    c4.notes.push_back(Note("Attributes: attitude, motivation, niveau de lecture, education...", "Profils d'utilisateur"));
     c.pages.push_back(c4);
     ntbks.push_back(c);
 
