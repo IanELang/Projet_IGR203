@@ -4,12 +4,13 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QScrollArea>
 
 #include "notebook.h"
 #include "mainwindow.h"
 
 
-class KeywordWidget : public QWidget
+class KeywordWidget : public QScrollArea
 {
 
     Q_OBJECT
