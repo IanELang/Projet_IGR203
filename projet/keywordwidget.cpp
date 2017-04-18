@@ -6,7 +6,6 @@
 #include <QPushButton>
 #include <QPixmap>
 #include <QLabel>
-#include <QScrollArea>
 #include <QTableWidget>
 
 #include <QTextEdit>
@@ -23,44 +22,45 @@ KeywordWidget::KeywordWidget(Notebook notebook,  int noteNum, MainWindow *_contr
     controller{_controller}
 {
 
-    this->setMinimumWidth(870);
-    this->setMinimumHeight(600);
+//    this->setMinimumWidth(870);
+//    this->setMinimumHeight(600);
 
     QGridLayout *layout = new QGridLayout();
-    QScrollArea *scrollarea = new QScrollArea(this);
+    QScrollArea *scrollarea = this;
 
     QWidget * gallery = new QWidget();
 
-    scrollarea->setMinimumWidth(_controller->size().width()-10);
-    scrollarea->setMinimumHeight(_controller->size().height()-10);
+    scrollarea->setMinimumWidth(_controller->size().width());
+    scrollarea->setMinimumHeight(_controller->size().height());
 
     QPalette pal = palette();
 
     pal.setColor(QPalette::Background, Qt::white);
     this->setAutoFillBackground(true);
     this->setPalette(pal);
-    // this->show();
+    //this->show();
 
     gallery->setLayout(layout);
     scrollarea->setWidget(gallery);
 
     scrollarea->setWidgetResizable(true);
 
-    scrollarea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    scrollarea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    scrollarea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scrollarea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
 
     clickLabel* notebookName = new clickLabel(0, noteNum);
     QWidget *rectangle1 = new QWidget();
     //QHBoxLayout *layout2 = new QHBoxLayout(rectangle1);
-    notebookName->setText(  "<html><b>" + notebook.name + "</b></html>");
+    notebookName->setText(  "<html><b>      " + notebook.name + "</b></html>");
+    notebookName->setMargin(15);
     notebookName->setStyleSheet("color:#5d5b59;");
     notebookName->setFont( QFont( "sans-serif", 24 ) );
     //Helvetica
     rectangle1->setStyleSheet("border: 5px solid #5d5b59");
 
     layout->addWidget(rectangle1, 0, 0, 1, 0 );
-    layout->addWidget(notebookName, 0, 0, 1, 0, Qt::AlignHCenter );
+    layout->addWidget(notebookName, 0, 0, 1, 0, Qt::AlignCenter);
 
     layout->setRowMinimumHeight(0,30);
     layout->setRowMinimumHeight(1,20);
@@ -70,7 +70,7 @@ KeywordWidget::KeywordWidget(Notebook notebook,  int noteNum, MainWindow *_contr
 
     for(int i=0; i<notebook.pages.size(); i++){
 
-        layout->setColumnMinimumWidth(i, qMax(200, this->size().width()/notebook.pages.size()));
+        layout->setColumnMinimumWidth(i, qMax(200, (this->size().width() - 18*notebook.pages.size())/notebook.pages.size()));
 
         clickLabel* date = new clickLabel(i, noteNum);
         date->setText(  "<html><b>" + notebook.pages[i].creationDate.toString() + "</b></html>");

@@ -26,8 +26,8 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
     this->setMinimumWidth(870);
     this->setMinimumHeight(600);
 
-    this->setMaximumWidth(1200);
-    this->setMaximumHeight(800);
+    //    this->setMaximumWidth(1200);
+    //    this->setMaximumHeight(800);
 
     layout = new QVBoxLayout();
     jours = new QHBoxLayout();
@@ -35,11 +35,11 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
     grid = new QGridLayout();
     this->setLayout(layout);
 
-    // nao sei se a tab vai funcionar bem
-    //    QPushButton * notebooks_button = new QPushButton ("see notebooks");
-    //    connect(notebooks_button, SIGNAL(clicked()), this->parent(), SLOT(openNotebookChooser()));
-    //layout->addWidget(notebooks_button);
 
+   // layout->setAlignment(Qt::AlignHCenter);
+    jours->setAlignment(Qt::AlignTop);
+    layout->setAlignment(Qt::AlignTop);
+    grid->setAlignment(Qt::AlignTop);
     layout->addLayout(jours);
     layout->addLayout(grid);
 
@@ -67,7 +67,7 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
     jours->addWidget(samedi,1);
     jours->addWidget(dimanche,1);
 
-    int minHeight = this->size().height()/5;
+    int minHeight = this->size().height()/3;
     int minmWidth = this->size().width()/7;
 
     grid->setHorizontalSpacing(4);
@@ -95,6 +95,7 @@ Calendar::Calendar(QVector<Notebook> const & notebooks, QWidget *parent) :
     int aux = colonne;
     int ligne = a/7+1;
 
+    grid->setRowMinimumHeight(0, 5);
 
     for (int i = a; i >= 1; i--){
 
