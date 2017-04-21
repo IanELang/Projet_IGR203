@@ -7,4 +7,5 @@ To build and launch this project navigate to projet/, then execute the commands:
 
 >   ./projet
 
-The import function may be tested with the file import.ntb inside the folder projet/notebooks/
+The import function on the main page be tested with the file import.ntb inside the 
+folder projet/notebooks/
