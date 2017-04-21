@@ -1,4 +1,4 @@
-# Projet IGR203 2027 - Prise de Notes ordinateur
+# Projet IGR203 2017 - Prise de notes sur ordinateur
 ## Julia D'Avila, Anna Duart, Ian Lang, Bernard Lupiac
 
 To build and launch this project navigate to projet/, then execute the commands:
