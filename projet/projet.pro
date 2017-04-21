@@ -23,7 +23,6 @@ SOURCES += main.cpp\
     day.cpp \
     notebookchooser.cpp \
     keywordwidget.cpp \
-    summarywidget.cpp \
     createdata.cpp
 
 HEADERS  += mainwindow.h \
@@ -36,10 +35,9 @@ HEADERS  += mainwindow.h \
     day.h \
     notebookchooser.h \
     keywordwidget.h \
-    summarywidget.h \
     createdata.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
 
 QMAKE_CXXFLAGS += -std=c++11
 

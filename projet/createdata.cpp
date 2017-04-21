@@ -10,13 +10,11 @@ void createData()
     Page a1("Qt", QDate(2017, 4, 6));
     a1.notes.push_back(Note("", "Signals and slots"));
     a1.notes.push_back(Note("", "Layouts"));
-    a1.notes.push_back(Note("Lebanon, is a sovereign state in Western Asia. It is bordered by Syria to the north and east and Israel to the south, while Cyprus is west across the Mediterranean Sea. ", "Lebanon"));
-    a1.notes.push_back(Note("Largest country in the world", "Russia"));
     a.pages.push_back(a1);
-    Page a2("America", QDate(2017, 4, 11));
-    a2.notes.push_back(Note("Most thunder strikes per year", "Brazil"));
-    a2.notes.push_back(Note("Country that crosses the most meridians", "Chile"));
-    a2.notes.push_back(Note("Has the andes", "Peru"));
+    Page a2("Web", QDate(2017, 4, 11));
+    a2.notes.push_back(Note("", "HTML"));
+    a2.notes.push_back(Note("", "Javascript"));
+    a2.notes.push_back(Note("", "CSS"));
     a.pages.push_back(a2);
     ntbks.push_back(a);
 

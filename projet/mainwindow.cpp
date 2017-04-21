@@ -3,15 +3,11 @@
 #include <iostream>
 
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include "pagewidget.h"
 
 #include "notebookchooser.h"
 #include "keywordwidget.h"
 #include "calendar.h"
-
-#include "summarywidget.h"
-
 #include "createdata.h"
 
 #include <QTabWidget>
@@ -19,25 +15,15 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    //ui->setupUi(this);
-    createData();
-    QFile file("file.ntb");
+    //createData();
+    QFile file("notebooks/file.ntb");
     file.open(QIODevice::ReadOnly);
     QDataStream in(&file);
     in >> notebooks;
     int a;
     in >> a;
-
-//    QTabWidget*tab = new QTabWidget();
-
-//    tab->addTab(new NotebookChooser(notebooks, this), "Notebooks");
-//    tab->addTab(new Calendar(notebooks, this), "Calendar");
-
-//    this->setCentralWidget(tab);
-
     updateCalendar();
     curNotebook = 0;
     curPage = 0;
@@ -59,7 +45,6 @@ void MainWindow::updateCalendar(){
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }
 
 void MainWindow::openPage(int ntbk, int pg)
